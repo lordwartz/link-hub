@@ -37,7 +37,7 @@ body {
     min-width: 600px;
     height: 480px;
     position: relative;
-    padding: 30px 0 30px 40px;
+    padding: 40px 0 30px 40px;
     left: -40px;
     background: linear-gradient(88.65deg, #CA51B4 -6.56%, #5D168A 102.58%);
     box-shadow: 0 19px 23px rgba(0, 0, 0, 0.31);
@@ -58,6 +58,7 @@ body {
     display: block;
     margin-bottom: 10px;
     color: rgba(255, 255, 255, 1);
+    cursor: pointer;
 }
 
 .auth_selector div:last-child span {
@@ -128,12 +129,13 @@ input::placeholder {
     padding: 10px 20px;
     border-radius: 10px;
     font-family: 'Bahnschrift', sans-serif;
+    cursor: pointer;
+    font-size: 18px;
+    color: #5d168a;
 }
 
 .auth_button#reg_btn {
     width: 220px;
-    font-size: 18px;
-    color: #5d168a;
 }
 
 .auth_button#login_btn {
