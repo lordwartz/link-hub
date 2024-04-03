@@ -30,6 +30,7 @@
     margin: 5px;
     width: 90%;
     height: 30px;
+    cursor: pointer;
 }
 
 .quick_nav ul li {
