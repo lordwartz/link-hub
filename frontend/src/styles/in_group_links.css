@@ -1,0 +1,27 @@
+.links {
+    background-color: lightgray;
+    padding: 2%;
+    min-width: 450px;
+}
+
+.link_group {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0;
+}
+
+.link_group div {
+    display: block;
+    flex-basis: 100%;
+    margin: 10px 0;
+}
+
+.link_group div a {
+    display: block;
+    text-align: center;
+    line-height: 50px;
+    align-content: center;
+    cursor: pointer;
+    background-color: lightcoral;
+}

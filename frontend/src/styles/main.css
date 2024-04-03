@@ -1,0 +1,58 @@
+.page {
+    display: grid;
+    grid-template-columns: 200px auto;
+    grid-auto-rows: 1fr;
+    height: 100%;
+    gap: 30px;
+}
+
+.groups_list {
+    display: flex;
+    box-sizing: content-box;
+    align-content: flex-start;
+    justify-content: center;
+    background-color: gray;
+    padding: 0;
+    height: 100%;
+    overflow: auto;
+    scrollbar-width: none;
+}
+
+.quick_nav {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.quick_nav button {
+    margin: 5px;
+    width: 90%;
+    height: 30px;
+    cursor: pointer;
+}
+
+.quick_nav ul li {
+    text-wrap: avoid;
+    margin: 20% 0;
+}
+
+.groups {
+    background-color: lightgray;
+    padding: 2%;
+    min-width: 450px;
+}
+
+.edit_buttons {
+    display: flex;
+    justify-content: flex-end;
+    height: 50px;
+    gap: 10px;
+}
+
+.edit_button {
+    height: 100%;
+    width: 80px;
+    cursor: pointer;
+}
