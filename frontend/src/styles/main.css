@@ -3,6 +3,7 @@
     grid-template-columns: 200px auto;
     grid-auto-rows: 1fr;
     height: 100%;
+    gap: 30px;
 }
 
 .groups_list {
@@ -42,33 +43,15 @@
     min-width: 450px;
 }
 
-.add_del_buttons {
+.edit_buttons {
     display: flex;
     justify-content: flex-end;
     height: 50px;
     gap: 10px;
 }
 
-.add_del_buttons button {
+.edit_button {
     height: 100%;
     width: 80px;
-    cursor: pointer;
-}
-
-.group_card_ul {
-    display: flex;
-    list-style: none;
-    flex-wrap: wrap;
-    padding: 0;
-    line-height: 100px;
-}
-
-.groups .card {
-    height: 100px;
-    background-color: lightcoral;
-    width: 200px;
-    margin: 10px;
-    text-align: center;
-    line-height: 100px;
     cursor: pointer;
 }
