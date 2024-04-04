@@ -55,7 +55,7 @@
     cursor: pointer;
 }
 
-.group_card_ul {
+.group_card {
     display: flex;
     list-style: none;
     flex-wrap: wrap;
@@ -67,8 +67,63 @@
     height: 100px;
     background-color: lightcoral;
     width: 200px;
+    position: relative;
     margin: 10px;
     text-align: center;
     line-height: 100px;
     cursor: pointer;
+}
+
+.groups .card:hover .delete_card_btn {
+    display: block;
+}
+
+.delete_card_btn {
+    position: absolute;
+    right: 0;
+    top:0;
+    font-family: monospace;
+    font-size: large;
+    background-color: transparent;
+    border: none;
+    display: none;
+}
+
+.card_label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.templates {
+    display: none;
+}
+
+.add_card {
+    order: 1;
+}
+
+.add_card::before {
+    content: " ";
+    position: absolute;
+    top: 15%;
+    left: 47.5%;
+    width: 5%;
+    height: 70%;
+    background-color: black;
+    border-radius: 9px;
+}
+
+.add_card::after {
+    content: " ";
+    position: absolute;
+    top: 45%;
+    right: 30%;
+    width: 40%;
+    height: 10%;
+    background-color: black;
+    border-radius: 10px;
+    z-index: 10;
 }
