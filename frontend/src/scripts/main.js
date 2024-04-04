@@ -1,6 +1,7 @@
 'use strict'
 window.addEventListener('load', function() {
-    const addButton = document.getElementsByClassName("add_button")[0];
+    const addButton = document.getElementsByClassName("add_group_button")[0];
+
     addButton.addEventListener('click', function (e) {
         createCardFromPrompt();
     });
@@ -30,6 +31,7 @@ function configureCardTemplate(name, id) {
         .getElementsByClassName('templates')[0]
         .getElementsByClassName('card')[0]
         .cloneNode(true);
+
     const cardRemoveButton = cardElement.getElementsByClassName('delete_card_btn')[0];
     cardRemoveButton.addEventListener('click', function (e) {
         cardElement.remove();
