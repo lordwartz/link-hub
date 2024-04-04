@@ -3,6 +3,7 @@
     grid-template-columns: 200px auto;
     grid-auto-rows: 1fr;
     height: 100%;
+    gap: 30px;
 }
 
 .groups_list {
@@ -29,6 +30,7 @@
     margin: 5px;
     width: 90%;
     height: 30px;
+    cursor: pointer;
 }
 
 .quick_nav ul li {
@@ -42,14 +44,14 @@
     min-width: 450px;
 }
 
-.add_del_buttons {
+.edit_buttons {
     display: flex;
     justify-content: flex-end;
     height: 50px;
     gap: 10px;
 }
 
-.add_del_buttons button {
+.edit_button {
     height: 100%;
     width: 80px;
     cursor: pointer;

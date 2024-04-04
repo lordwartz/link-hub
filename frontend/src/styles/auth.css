@@ -66,11 +66,11 @@ body {
     margin-bottom: 30px;
 }
 
-.auth_fields li {
+.auth_fields input {
     margin-bottom: 15px;
 }
 
-.auth_fields li:last-child {
+.auth_fields input:last-child {
     margin-bottom: 0;
 }
 

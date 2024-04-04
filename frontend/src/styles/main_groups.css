@@ -1,0 +1,17 @@
+.cards_group {
+    display: flex;
+    list-style: none;
+    flex-wrap: wrap;
+    padding: 0;
+    line-height: 100px;
+}
+
+.groups .card {
+    height: 100px;
+    background-color: lightcoral;
+    width: 200px;
+    margin: 10px;
+    text-align: center;
+    line-height: 100px;
+    cursor: pointer;
+}
