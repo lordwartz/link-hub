@@ -10,16 +10,19 @@
     <script src="../scripts/main.js"></script>
 </head>
 <body>
+    <header>
+        <img src="../img/logo.png" height="100" alt="logo"/>
+    </header>
     <div class="page">
         <aside class="groups_list">
+            Быстрый доступ
             <nav class="quick_nav">
                 <button>Группа 1</button>
                 <button>Группа 2</button>
             </nav>
-
         </aside>
         <main class="groups">
-            <div class="edit_buttons">
+            <div class="edit_buttons" id="main">
                 <button class="add_group_button edit_button">Добавить</button>
             </div>
             <div class="group_card">
@@ -28,13 +31,11 @@
             </div>
         </main>
         <main class="links">
-            <div class="toolbar">
-                <button class="back_button">
+            <div class="edit_buttons" id="groups">
+                <button class="back_button edit_button">
                     Назад
                 </button>
-                <div class="edit_buttons">
-                    <button class="add_link_button edit_button">Добавить</button>
-                </div>
+                <button class="add_link_button edit_button">Добавить</button>
             </div>
             <div class="link_group">
             </div>
@@ -43,11 +44,11 @@
     <div class="templates">
         <div class="card">
             <div class="card_label"></div>
-            <button class="delete_card_btn">X</button>
+            <button class="delete_card_btn">✖</button>
         </div>
         <div class="link">
             <a>Link</a>
-            <button class="delete_link_btn">X</button>
+            <button class="delete_link_btn">✖</button>
         </div>
     </div>
     <div id="background" class="modal">

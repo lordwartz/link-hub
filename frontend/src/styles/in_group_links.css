@@ -1,7 +1,9 @@
 .links {
-    background-color: lightgray;
+    background-color: #5d168a;
     padding: 2%;
     min-width: 450px;
+    height: fit-content;
+    border-radius: 5px;
 }
 
 .link_group {
@@ -21,7 +23,9 @@
     display: block;
     text-align: center;
     line-height: 50px;
+    font-size: 20px;
     align-content: center;
     cursor: pointer;
-    background-color: lightcoral;
+    background-color: white;
+    border-radius: 5px;
 }
