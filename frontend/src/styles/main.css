@@ -1,21 +1,30 @@
+header {
+    padding: 5px 25px;
+}
+
 .page {
     display: grid;
     grid-template-columns: 200px auto;
     grid-auto-rows: 1fr;
-    height: 100%;
-    gap: 30px;
+    height: calc(92vh - 100px);
+    gap: 10px;
 }
 
 .groups_list {
     display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
     box-sizing: content-box;
     align-content: flex-start;
     justify-content: center;
-    background-color: gray;
-    padding: 0;
+    background-color: #ca51b4;
+    border-radius: 8px;
     height: 100%;
     overflow: auto;
     scrollbar-width: none;
+    padding-top: 15px;
+    font-size: 20px;
+
 }
 
 .quick_nav {
@@ -27,10 +36,19 @@
 }
 
 .quick_nav button {
+    display: flex;
+    align-items: center;
     margin: 5px;
     width: 90%;
     height: 30px;
     cursor: pointer;
+    background-color: #fff;
+    color: #5d168a;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    padding: 10px;
 }
 
 .quick_nav ul li {
@@ -39,23 +57,48 @@
 }
 
 .groups {
-    background-color: lightgray;
+    background-color: #5d168a;
     padding: 2%;
     min-width: 450px;
+    height: fit-content;
+    border-radius: 8px;
 }
+
+
+button {
+    color: #5d168a;
+}
+
 
 .edit_buttons {
     display: flex;
-    justify-content: flex-end;
+    width: 100%;
     height: 50px;
     gap: 10px;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.edit_buttons#main {
+    justify-content: flex-end;
 }
 
 .edit_button {
     height: 100%;
-    width: 80px;
+    width: 90px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    color: #5d168a;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    padding: 5px;
 }
+
 
 .group_card {
     display: flex;
@@ -67,7 +110,7 @@
 
 .groups .card {
     height: 100px;
-    background-color: lightcoral;
+    background-color: white;
     width: 200px;
     position: relative;
     margin: 10px;
@@ -85,7 +128,7 @@
     right: 0;
     top:0;
     font-family: monospace;
-    font-size: large;
+    font-size: 24px;
     background-color: transparent;
     border: none;
     display: none;
@@ -97,14 +140,23 @@
     align-items: center;
     width: 100%;
     height: 100%;
+    background-color: #fff;
+    box-shadow: 5px 4px 3px rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
 }
 
 .templates {
     display: none;
 }
 
+.templates .links {
+    background-color: #5d168a;
+}
+
 .add_card {
     order: 1;
+    background-color: white;
+    box-shadow: 5px 4px 3px rgba(255, 255, 255, 0.2);
 }
 
 .add_card::before {
@@ -114,7 +166,7 @@
     left: 47.5%;
     width: 5%;
     height: 70%;
-    background-color: black;
+    background-color: #ca51b4;
     border-radius: 9px;
 }
 
@@ -125,7 +177,7 @@
     right: 30%;
     width: 40%;
     height: 10%;
-    background-color: black;
+    background-color: #ca51b4;
     border-radius: 10px;
     z-index: 10;
 }
