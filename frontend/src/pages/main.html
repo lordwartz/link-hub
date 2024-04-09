@@ -5,6 +5,8 @@
     <title>Link<Hub></title>
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="../styles/main_groups.css">
+    <link rel="stylesheet" href="../styles/in_group_links.css">
+    <link rel="stylesheet" href="../styles/modal.css">
     <script src="../scripts/main.js"></script>
 </head>
 <body>
@@ -25,12 +27,50 @@
                 </div>
             </div>
         </main>
+        <main class="links">
+            <div class="toolbar">
+                <button class="back_button">
+                    Назад
+                </button>
+                <div class="edit_buttons">
+                    <button class="add_link_button edit_button">Добавить</button>
+                </div>
+            </div>
+            <div class="link_group">
+            </div>
+        </main>
     </div>
     <div class="templates">
         <div class="card">
             <div class="card_label"></div>
             <button class="delete_card_btn">X</button>
         </div>
+        <div class="link">
+            <a>Link</a>
+            <button class="delete_link_btn">X</button>
+        </div>
+    </div>
+    <div id="background" class="modal">
+        <form id="form" class="modal">
+            <div id="inputs" class="form">
+                <label>
+                    Имя<br>
+                    <input class="add_modal_form" id="link_name">
+                </label>
+                <label>
+                    Ссылка<br>
+                    <input class="add_modal_form" id="link">
+                </label>
+            </div>
+            <div id="buttons" class="form">
+                <button class="cancel" type="button">
+                    Отменить
+                </button>
+                <button class="submit" type="submit">
+                    Добавить
+                </button>
+            </div>
+        </form>
     </div>
 </body>
 </html>
