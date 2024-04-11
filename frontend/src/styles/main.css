@@ -153,6 +153,7 @@ button {
     background-color: #fff;
     box-shadow: 5px 4px 3px rgba(255, 255, 255, 0.2);
     border-radius: 5px;
+    font-size: 20px;
 }
 
 .templates {
