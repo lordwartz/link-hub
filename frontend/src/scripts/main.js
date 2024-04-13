@@ -1,51 +1,69 @@
-'use strict'
+'use strict';
+
 window.addEventListener('load', function() {
-    const addButton = document.getElementsByClassName("add_group_button")[0];
+    const addButton = document.querySelector(".add_group_button");
+    addButton.addEventListener('click', createCardFromPrompt);
 
-    addButton.addEventListener('click', function (e) {
-        createCardFromPrompt();
-    });
+    const addCardButton = document.querySelector('.add_card');
+    addCardButton.addEventListener('click', createCardFromPrompt);
 
-    const add_card = document.getElementsByClassName('add_card')[0];
-
-    add_card.addEventListener('click', function (e)  {
-        createCardFromPrompt();
-    });
-
-
-    const addLinkButton = document.getElementsByClassName('add_link_button')[0];
+    const addLinkButton = document.querySelector('.add_link_button');
     addLinkButton.addEventListener('click', function (e) {
-        askUser(['Текст ссылки','Ссылка'],['name','link']).then(function (answers) {
+        askUser(['Link Text', 'URL'], ['name', 'link']).then(function (answers) {
             const newLink = createLink(answers.name, answers.link);
             addLinkToPage(newLink);
-        })
-
+        });
     });
 
-    const backButton = document.getElementsByClassName('back_button')[0];
-    backButton.addEventListener('click', function (e) {
-        showGroups();
-    });
+    const backButton = document.querySelector('.back_button');
+    backButton.addEventListener('click', showGroups);
+
+    loadCardsFromLocalStorage();
 });
 
 let cards = [];
 let nextCardId = 0;
 let selectedCard = null;
 
+function loadCardsFromLocalStorage() {
+    const storedCards = localStorage.getItem('cards');
+    if (storedCards) {
+        cards = JSON.parse(storedCards);
+        nextCardId = cards.length;
+        cards.forEach(card => {
+            const cardElement = configureCardTemplate(card.name, card.id.split('-')[0]);
+            document.querySelector('.group_card').appendChild(cardElement);
+
+            card.links.forEach(link => addLinkToPage(link, card.id));
+        });
+    }
+}
+
+function saveCardsToLocalStorage() {
+    localStorage.setItem('cards', JSON.stringify(cards));
+}
+
+function deleteCardFromLocalStorage(cardId) {
+    cards = cards.filter(card => card.id !== cardId);
+    saveCardsToLocalStorage();
+}
+
 function createCard(name) {
     const card = {
         name,
-        id : `${nextCardId}-card`,
-        links : [],
+        id: `${nextCardId}-card`,
+        links: [],
         linkCounter: 0
-    }
+    };
 
     cards.push(card);
+    saveCardsToLocalStorage();
     const cardElement = configureCardTemplate(name, nextCardId);
     const groupContainer = document.getElementsByClassName('group_card')[0];
     groupContainer.appendChild(cardElement);
     nextCardId++;
 }
+
 
 function configureCardTemplate(name, id) {
     const cardElement = document
@@ -61,9 +79,7 @@ function configureCardTemplate(name, id) {
     const cardRemoveButton = cardElement.getElementsByClassName('delete_card_btn')[0];
     cardRemoveButton.addEventListener('click', function (e) {
         cardElement.remove();
-        const groupIndex = cards.findIndex(group => group.id === cardElement.id);
-        cards.splice(groupIndex, 1);
-        //Метод ниже нужен, чтобы при нажатии на кнопку удаления у нас не прокликивалась карточка
+        deleteCardFromLocalStorage(cardElement.id);
         e.stopPropagation();
     });
 
@@ -103,9 +119,11 @@ function createLink(name, link) {
         name,
         link,
         id: `${selectedCard.linkCounter++}-link`
-    }
+    };
 
     selectedCard.links.push(newLink);
+
+    saveCardsToLocalStorage();
     return newLink;
 }
 function addLinkToPage(linkObj) {
