@@ -1,3 +1,7 @@
+body {
+    font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
 header {
     padding: 5px 25px;
 }
@@ -119,65 +123,23 @@ button {
     cursor: pointer;
 }
 
-.groups .card:hover .delete_card_btn {
-    display: block;
-}
-
-.delete_card_btn {
-    position: absolute;
-    right: 0;
-    top:0;
-    font-family: monospace;
-    font-size: 24px;
-    background-color: transparent;
-    border: none;
-    display: none;
-}
-
-.card_label {
+header {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+}
+
+.profile_bar {
+    display: flex;
+    flex-direction: row;
     align-items: center;
-    width: 100%;
-    height: 100%;
-    background-color: #fff;
-    box-shadow: 5px 4px 3px rgba(255, 255, 255, 0.2);
-    border-radius: 5px;
+    gap: 10px;
+
 }
 
-.templates {
-    display: none;
+.profile_bar img {
+    border-radius: 50%;
 }
 
-.templates .links {
-    background-color: #5d168a;
-}
-
-.add_card {
-    order: 1;
-    background-color: white;
-    box-shadow: 5px 4px 3px rgba(255, 255, 255, 0.2);
-}
-
-.add_card::before {
-    content: " ";
-    position: absolute;
-    top: 15%;
-    left: 47.5%;
-    width: 5%;
-    height: 70%;
-    background-color: #ca51b4;
-    border-radius: 9px;
-}
-
-.add_card::after {
-    content: " ";
-    position: absolute;
-    top: 45%;
-    right: 30%;
-    width: 40%;
-    height: 10%;
-    background-color: #ca51b4;
-    border-radius: 10px;
-    z-index: 10;
+.profile_link {
+    cursor: pointer;
 }
