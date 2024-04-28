@@ -87,7 +87,7 @@ body {
     background-color: rgba(255, 255, 255, 0.5);
 }
 
-.reg_form {
+.reg_form, .login_form{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -134,4 +134,8 @@ input::placeholder {
     width: 220px;
     font-size: 18px;
     color: #5d168a;
+}
+
+.auth_button#login_btn {
+    width: 100px;
 }
