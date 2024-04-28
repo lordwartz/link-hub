@@ -45,6 +45,10 @@ body {
     gap: 30px;
 }
 
+.inactive {
+    opacity: 0.5;
+}
+
 .auth_selector {
     display: grid;
     grid-template-columns: 60% 40%;
@@ -54,38 +58,17 @@ body {
     text-align: center;
 }
 
-.auth_selector div span {
+.auth_selector div a {
     display: block;
     margin-bottom: 10px;
-    color: rgba(255, 255, 255, 1);
+    color: white;
     cursor: pointer;
-}
-
-.auth_selector div:last-child span {
-    color: rgba(255, 255, 255, 0.5);
-}
-
-.auth_selector div:first-child {
-    color: rgba(255, 255, 255, 0.5);
-}
-
-.auth_selector div:last-child {
-    color: rgba(255, 255, 255, 0.5);
 }
 
 .line {
     height: 2px;
     background-color: white;
-}
-
-.line#reg {
     width: 100%;
-    background-color: rgba(255, 255, 255, 1);
-}
-
-.line#login {
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.5);
 }
 
 .reg_form, .login_form{
