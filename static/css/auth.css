@@ -15,7 +15,7 @@ body {
     text-align: center;
     width: 400px;
     height: 500px;
-    padding: 0 30px;
+    padding: 0 40px;
     background: #E6E6E6;
     box-shadow: -26px 19px 23.1px rgba(202, 81, 180, 0.59);
     border-radius: 12px;
@@ -31,7 +31,7 @@ body {
     display: flex;
     box-sizing: border-box;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     width: 600px;
     min-width: 600px;
@@ -90,16 +90,18 @@ body {
 .reg_form {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     gap: 25px;
     width: 70%;
+    height: 100%;
 }
 
-.reg_form .reg_form_fields {
+.reg_form_fields {
     width: 100%;
 }
 
-.reg_form .reg_form_fields label {
+.reg_form_fields label {
     display: flex;
     flex-direction: column;
     color: rgba(255, 255, 255, 1);
@@ -124,7 +126,12 @@ input::placeholder {
 
 .auth_button {
     padding: 10px 20px;
-    width: 200px;
     border-radius: 10px;
     font-family: 'Bahnschrift', sans-serif;
+}
+
+.auth_button#reg_btn {
+    width: 220px;
+    font-size: 18px;
+    color: #5d168a;
 }
