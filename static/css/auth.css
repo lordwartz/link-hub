@@ -1,98 +1,130 @@
 body {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    background-color: #f5f5f5;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Bahnschrift', sans-serif;
 }
 
-.logo#auth {
+.logo_window {
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: 400px;
+    height: 500px;
+    padding: 0 30px;
+    background: #E6E6E6;
+    box-shadow: -26px 19px 23.1px rgba(202, 81, 180, 0.59);
+    border-radius: 12px;
+    z-index: 1;
+    font-size: 18px;
+}
+
+.logo_window img {
+    scale: 60%;
+}
+
+.form_window {
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 600px;
+    min-width: 600px;
+    height: 480px;
+    position: relative;
+    padding: 30px 0 30px 40px;
+    left: -40px;
+    background: linear-gradient(88.65deg, #CA51B4 -6.56%, #5D168A 102.58%);
+    box-shadow: 0 19px 23px rgba(0, 0, 0, 0.31);
+    border-radius: 8px;
+    gap: 30px;
+}
+
+.auth_selector {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    text-align: center;
+}
+
+.auth_selector div span {
     display: block;
-    margin: 60px auto 30px ;
-    align-self: center;
+    margin-bottom: 10px;
+    color: rgba(255, 255, 255, 1);
 }
 
-.sign_form {
+.auth_selector div:last-child span {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.auth_selector div:first-child {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.auth_selector div:last-child {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.line {
+    height: 2px;
+    background-color: white;
+}
+
+.line#reg {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.line#login {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.reg_form {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    width: 400px;
-    background-color: #ca51b4;
-    padding: 0 15px 30px;
-    border-radius: 15px;
+    gap: 25px;
+    width: 70%;
 }
 
-
-.sign_type {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 0;
+.reg_form .reg_form_fields {
+    width: 100%;
 }
 
-.sign_type li {
-    display: inline-flex;
-    margin: 0;
-    padding: 0;
-}
-
-.sign_type li a {
-    font-family: Georgia, Cambria, "Times New Roman", Times, serif;
-    font-size: 24px;
-    text-decoration: none;
-    color: black;
-    margin: 15px 20px;
-}
-
-.sign_type a:hover {
-    text-decoration: underline;
-}
-
-.sign_type a.active {
-    text-decoration: underline;
-}
-
-.auth_form {
-    display: inline-flex;
+.reg_form .reg_form_fields label {
+    display: flex;
     flex-direction: column;
-    justify-items: center;
-    align-items: center;
-}
-
-
-.auth_fields {
-    list-style: none;
-    padding: 0 100px;
-    margin-bottom: 30px;
-}
-
-.auth_fields input {
+    color: rgba(255, 255, 255, 1);
     margin-bottom: 15px;
-}
-
-.auth_fields input:last-child {
-    margin-bottom: 0;
+    gap: 3px;
 }
 
 input {
-    padding: 5px 10px;
-    border-radius: 5px;
-}
-
-.sign_form button {
-    display: block;
-    margin: 0 auto;
-    width: auto;
-    background-color: #fff;
-    color: #ca51b4;
+    background-color: transparent;
     border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    padding: 10px;
+    outline: none;
 }
 
-.sign_form button:hover {
-    background-color: #f5f5f5;
+input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.input_line {
+    height: 1px;
+    background-color: white;
+}
+
+.auth_button {
+    padding: 10px 20px;
+    width: 200px;
+    border-radius: 10px;
+    font-family: 'Bahnschrift', sans-serif;
 }
