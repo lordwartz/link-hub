@@ -96,3 +96,12 @@ input {
 .sign_form button:hover {
     background-color: #f5f5f5;
 }
+
+
+.form:target {
+    display: inline-block;
+}
+
+.form:not(:target) {
+    display: none;
+}

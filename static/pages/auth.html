@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign up</title>
+    <link rel="stylesheet" href="static/css/auth.css">
+</head>
+<body>
+    <img class="logo" id="auth" src="static/img/logo.png" height="200" alt="logo"/>
+    <div class="sign_form">
+        <ul class="sign_type">
+            <li><a href="#auth_form" class="auth_link active">Авторизация</a></li>
+            <li><a href="#reg_form" class="reg_link">Регистрация</a></li>
+        </ul>
+        <form action="/login" id="auth_form" class="form" method="post">
+            <!-- Форма авторизации -->
+            <div class="auth_fields">
+                <input type="text" name="login" placeholder="Логин"/>
+                <input type="password" name="password" placeholder="Пароль"/>
+            </div>
+            <button type="submit">Войти</button>
+        </form>
+        <form action="/register" class="form" id="reg_form" method="post">
+            <!-- Форма регистрации -->
+            <div class="auth_fields">
+                <input type="text" name="name" placeholder="Имя" />
+                <input type="email" name="email" placeholder="Почта" />
+                <input type="text" name="login" placeholder="Логин" />
+                <input type="password" name="password" placeholder="Пароль" />
+            </div>
+            <button type="submit" >Зарегистрироваться</button>
+        </form>
+    </div>
+    <script src="static/scripts/auth.js"></script>
+</body>
+</html>

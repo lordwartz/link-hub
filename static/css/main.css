@@ -117,13 +117,22 @@ button {
     text-align: center;
     line-height: 100px;
     cursor: pointer;
+    transition: all 1s;
 }
 
 .groups .card:hover .delete_card_btn {
     display: block;
 }
 
-.delete_card_btn {
+.links .link:hover .delete_link_btn {
+    display: block;
+}
+
+.links .link {
+    position: relative;
+}
+
+.delete_card_btn, .delete_link_btn {
     position: absolute;
     right: 0;
     top:0;
@@ -132,6 +141,7 @@ button {
     background-color: transparent;
     border: none;
     display: none;
+    z-index: 1;
 }
 
 .card_label {
@@ -143,6 +153,7 @@ button {
     background-color: #fff;
     box-shadow: 5px 4px 3px rgba(255, 255, 255, 0.2);
     border-radius: 5px;
+    font-size: 20px;
 }
 
 .templates {
@@ -179,5 +190,9 @@ button {
     height: 10%;
     background-color: #ca51b4;
     border-radius: 10px;
-    z-index: 10;
+    z-index: 0;
+}
+
+.links {
+    display: none;
 }
