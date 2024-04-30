@@ -21,9 +21,8 @@
         </div>
     </div>
     <div class="exit">
-        <a class="exit_a">Выйти</a>
+        <a>Выйти</a>
     </div>
-
 </aside>
 <main>
     <div class="top_menu">
@@ -49,13 +48,13 @@
                 </a>
             </template>
             <template id="add_group">
-                <a class="add_group_link">+</a>
+                <a class="add_main_group_link">+</a>
             </template>
             <script>
                 let quick_group_template = document.querySelector('#quick_menu_group_template');
                 let main_group_template = document.querySelector('#main_group_template');
                 let add_button_template = document.querySelector('#add_group');
-                for (let i = 1; i <= 7; i++) {
+                for (let i = 1; i <= 12; i++) {
                     {
                         let clone = document.importNode(main_group_template.content, true);
                         let link = clone.querySelector('a');
@@ -82,11 +81,11 @@
 
                 quickLinks.forEach(link => {
                     link.addEventListener('click', function(e) {
-                        e.preventDefault(); // Отменяем стандартное поведение ссылки
+                        e.preventDefault();
                         quickLinks.forEach(link => {
-                            link.classList.remove('active_quick_menu_group'); // Удаляем класс у всех ссылок
+                            link.classList.remove('active_quick_menu_group');
                         });
-                        this.classList.add('active_quick_menu_group'); // Добавляем класс только нажатой ссылке
+                        this.classList.add('active_quick_menu_group');
                     });
                 });
             </script>
