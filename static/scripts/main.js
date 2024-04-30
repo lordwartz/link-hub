@@ -15,57 +15,25 @@ window.addEventListener('load', function() {
         });
     });
 
+    this.document.querySelector('.group_card').addEventListener('click', function(e) {
+        if(e.target.classList.contains('delete_card_btn')) {
+            e.target.remove();
+            return;
+        }
+
+        let card = e.target.closest('.card');
+        if(!card || card.classList.contains('add_card')) {
+            return;
+        }
+        
+        history.pushState(null, null, `/folder/${card.id}`);
+        window.location.href = `/folder/${card.id}`;
+    })
+
     const backButton = document.querySelector('.back_button');
     backButton.addEventListener('click', showGroups);
     getGroupContent();
 });
-
-let cards = [];
-let cardCount = 0;
-let selectedCard = null;
-
-function createCard(name, id) {
-    const card = {
-        name,
-        id: id,
-        links: [],
-        linkCounter: 0
-    };
-    if(card.id === undefined) {
-        console.log(id);
-    }
-    cards.push(card);
-    const cardElement = configureItemTemplate(name, id);
-    const groupContainer = document.getElementsByClassName('group_card')[0];
-    groupContainer.appendChild(cardElement);
-}
-
-
-function configureItemTemplate(name, id, is_link) {
-    const cardElement = document
-        .getElementsByClassName('templates')[0]
-        .getElementsByClassName('card')[0]
-        .cloneNode(true);
-
-    cardElement.addEventListener('click', function(e) {
-        selectedCard = cards.find(card => card.id === id);
-        getGroupContent();
-    });
-
-    const cardRemoveButton = cardElement.getElementsByClassName('delete_card_btn')[0];
-    cardRemoveButton.addEventListener('click', function (e) {
-        cardElement.remove();
-        e.stopPropagation();
-    });
-
-    cardElement.id = `${id}-card`;
-    cardElement.getElementsByClassName('card_label')[0].innerText = name;
-    if (is_link) {
-        cardElement.getElementsByClassName('card_label')[0].innerText += ' (ссылка)';
-    }
-
-    return cardElement;
-}
 
 function createCardFromPrompt() {
     askUser(['Название группы'], ['name']).then(function (answers) {
@@ -79,6 +47,8 @@ function createCardFromPrompt() {
 }
 
 function tryAddCard(name) {
+    const card_id = document.querySelector('.group_card').dataset.currentFolder ?? null;
+    const cardCount = document.querySelector('.group_card').children.length - 1;
     fetch('/add', {
         method: 'POST',
         headers: {
@@ -86,7 +56,7 @@ function tryAddCard(name) {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            parent: selectedCard?.id ?? null,
+            parent: card_id,
             content: {
                 name: name,
                 order: cardCount
@@ -100,45 +70,10 @@ function tryAddCard(name) {
 
         return response.json();
     })
-    .then(payload => {
-        console.log(`${name} : ${payload._id}`)
-        createCard(name, payload._id);
-        cardCount++;
+    .then(() => {
+        location.replace(location.href);
     })
-    .catch(() => alert('Не удалось добавить ссылку'));
-}
-
-function getGroupContent() {
-    fetch('get', {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            id: selectedCard?.id ?? null
-        })
-    })
-    .then(response => {
-        if(!response.ok) {
-            throw new Error(`Ошибка, код ответа: ${response.statusCode}`);
-        }
-
-        return response.json();
-    })
-    .then(payload => {
-        const groups = document.querySelector('.group_card');
-        const cards = Array.from(groups.children)
-        cards.forEach(card => {
-            if(!card.classList.contains('add_card')) {
-                card.remove();
-            }
-        })
-
-        payload.items.forEach(item => {
-            createCard(item.name, item._id, item.is_link);
-        });
-    })
+    //.catch(() => alert('Не удалось добавить ссылку'));
 }
 
 function  showGroups() {

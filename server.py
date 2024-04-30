@@ -1,5 +1,6 @@
-from flask import Flask, jsonify, session, abort
+from flask import Flask, jsonify, session, abort, send_from_directory
 from PyMongoJsonProvider import PyMongoJSONProvider
+from PageRenderer import FolderPageRenderer
 from pymongo import ReturnDocument
 from pymongo import MongoClient
 from hashlib import sha256
@@ -13,6 +14,9 @@ app = Flask(__name__)
 # Генерируем секретный ключ
 app.secret_key = os.urandom(30).hex()
 app.json = PyMongoJSONProvider(app)
+renderers = {
+    "folder": FolderPageRenderer()
+}
 
 client = MongoClient('localhost', 27017)
 client.drop_database('linkhub')
@@ -26,11 +30,11 @@ def is_logged_in():
     return 'logged_in' in session
 
 
-@app.route('/', methods=['GET'])
+@app.route('/main', methods=['GET'])
 def auth():
     if request.method == 'GET':
         if 'logged_in' in session:
-            return app.send_static_file('pages/main.html')
+            return renderers["folder"].render(get_folders(), id='root')
         return app.send_static_file('pages/auth.html')
 
 
@@ -41,7 +45,7 @@ def login():
     if user_id is not None:
         session['logged_in'] = True
         session['user_id'] = user_id
-        return app.redirect('/')
+        return app.redirect('/main')
     abort(401)
 
 
@@ -69,7 +73,7 @@ def register():
 
     if insert_id is None:
         return jsonify({"Error": "Account with this login or email already exists"}), 400
-    return app.redirect('/')
+    return app.redirect('/main')
 
 
 @app.route('/logout', methods=['GET'])
@@ -127,20 +131,21 @@ def add():
             "links": []
         }).inserted_id
 
-        groups.find_one_and_update(
-            {"_id": ObjectId(data["parent"])},
-            {
-                "$push": {
-                    "links": {
-                        "_id": group_id,
-                        "is_link": False,
-                        "name": group_data["name"],
-                        "$ref": group_id,
-                        "order": group_data["order"]
+        if data["parent"] != 'root':
+            groups.find_one_and_update(
+                {"_id": ObjectId(data["parent"])},
+                {
+                    "$push": {
+                        "links": {
+                            "_id": group_id,
+                            "is_link": False,
+                            "name": group_data["name"],
+                            "$ref": group_id,
+                            "order": group_data["order"]
+                        }
                     }
                 }
-            }
-        )
+            )
 
         return jsonify({"_id": group_id}), 200
     return jsonify({"error": "Wrong request json structure!"}), 400
@@ -172,7 +177,7 @@ def get_folders():
     folders = groups.find({
         "$and": [
             {"user": session["user_id"]},
-            {"parent": None}
+            {"parent": 'root'}
         ]
     })
 
@@ -181,6 +186,22 @@ def get_folders():
         "name": folder["name"],
         "is_link": False,
     } for folder in folders]
+
+@app.route("/folder/<id>", methods=['GET'])
+def get_folder(id):
+    group = groups.find_one(
+    {
+        "$and":[
+            {"user": session["user_id"]},
+            {"_id": ObjectId(id)}
+        ]
+    })
+
+    if group is None:
+        abort(404)
+        
+    items = group["links"]
+    return renderers["folder"].render(items, id)
 
 
 if __name__ == '__main__':
