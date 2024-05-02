@@ -30,12 +30,16 @@ def is_logged_in():
     return 'logged_in' in session
 
 
-@app.route('/main', methods=['GET'])
+@app.route('/', methods=['GET'])
 def auth():
     if request.method == 'GET':
         if 'logged_in' in session:
             return renderers["folder"].render(get_folders(), id='root')
-        return app.send_static_file('pages/auth.html')
+        return app.redirect('/auth')
+
+@app.route('/auth')
+def auth_page():
+    return app.send_static_file('pages/auth.html')
 
 
 @app.route('/login', methods=['POST'])
@@ -45,7 +49,7 @@ def login():
     if user_id is not None:
         session['logged_in'] = True
         session['user_id'] = user_id
-        return app.redirect('/main')
+        return app.redirect('/')
     abort(401)
 
 
@@ -73,7 +77,7 @@ def register():
 
     if insert_id is None:
         return jsonify({"Error": "Account with this login or email already exists"}), 400
-    return app.redirect('/main')
+    return app.redirect('/')
 
 
 @app.route('/logout', methods=['GET'])
@@ -104,21 +108,24 @@ def add():
     data = request.json
     if schemas.validate(data, schemas.LINK_SCHEMA):
         link_data = data["content"]
-        return groups.find_one_and_update(
-            {"_id": data["parent"], "user": session["user_id"]},
+        folder_id = groups.find_one_and_update(
+            {"_id": ObjectId(data["parent"]), "user": session["user_id"]},
             {
                 "$push": {
                     "links": {
-                        "data": {
-                            "is_link": True,
-                            "name": link_data["name"],
-                            "link": link_data["link"]
-                        },
+                        "is_link": True,
+                        "name": link_data["name"],
+                        "link": link_data["link"],
                         "order": link_data["order"]
                     }
                 }
-            }, return_document=ReturnDocument.AFTER)
+            }
+        )
 
+        if folder_id is None:
+            return jsonify({"Error": "Could not add link to folder!"}), 400
+        return jsonify({"id": folder_id}), 200
+    
     elif schemas.validate(data, schemas.GROUP_SCHEMA):
         group_data = data["content"]
 
@@ -140,7 +147,6 @@ def add():
                             "_id": group_id,
                             "is_link": False,
                             "name": group_data["name"],
-                            "$ref": group_id,
                             "order": group_data["order"]
                         }
                     }
@@ -189,6 +195,9 @@ def get_folders():
 
 @app.route("/folder/<id>", methods=['GET'])
 def get_folder(id):
+    if not is_logged_in():
+        return app.redirect('/')
+
     group = groups.find_one(
     {
         "$and":[
@@ -203,6 +212,60 @@ def get_folder(id):
     items = group["links"]
     return renderers["folder"].render(items, id)
 
+@app.route('/delete', methods=['POST'])
+def delete():
+    data = request.json
+    if schemas.validate(data, schemas.LINK_DEL_SCHEMA):
+        folder_id = groups.find_one_and_update(
+            {"_id": ObjectId(data["parent"]), "user": session["user_id"]},
+            {
+                "$pull": {
+                    "links": {
+                        "name": data["name"],
+                        "is_link": True
+                    }
+                }
+            }, return_document=ReturnDocument.AFTER)
+
+        if folder_id is None:
+            return jsonify({"Error": "Could not find specified link!"}), 400
+        return jsonify({"id": folder_id}), 200
+    
+    elif schemas.validate(data, schemas.GROUP_DEL_SCHEMA):
+        delete_folder(data["id"], data["parent"])
+        return jsonify({"_id": data["id"]}), 200
+    return jsonify({"Error": "Wrong request json structure!"}), 400
+
+def delete_folder(id, parent_id):
+
+    if parent_id != 'root':
+            groups.find_one_and_update(
+                {"_id": ObjectId(parent_id)},
+                {
+                    "$pull": {
+                        "links": {
+                            "_id": ObjectId(id),
+                            "is_link": False
+                        }
+                    }
+                }
+            )
+
+    folders = []
+    folders.append((ObjectId(id), parent_id))
+
+    while folders:
+        cur_id, cur_parent_id = folders.pop()
+        folder = groups.find_one_and_delete({
+                "user": session["user_id"],
+                "parent": cur_parent_id,
+                "_id": cur_id,
+        })
+
+        for link in folder["links"]:
+            if link["is_link"]:
+                continue
+            folders.append((link["_id"], str(cur_id)))
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -13,12 +13,18 @@ class FolderPageRenderer(PageRenderer):
     def __init__(self) -> None:
         super().__init__('templates/folder_page.html')
 
-    def render(self, folders, id):
-        elements = ''.join(
-            (f'''<div id="{folder["_id"]}" class="card">
-                <div class ="card_label"> {folder["name"]} </div>
-                <button class="delete_card_btn">✖</button>
-            </div>'''
-            for folder in folders)
-        )
-        return super().render(template=elements, folder_id=id)
+    def render(self, items, id):
+        elements = []
+        for item in items:
+            if item["is_link"]:
+                elements.append(f'''<div data-link="{item["link"]}" data-name="{item["name"]}" class="card link">
+                                    <div class="card_label"> {item["name"]} (ССЫЛКА)</div>
+                                    <button class="delete_card_btn">✖</button>
+                                </div>''')
+            else:
+             elements.append(f'''<div id="{item["_id"]}" class="card">
+                                    <div class ="card_label"> {item["name"]} </div>
+                                    <button class="delete_card_btn">✖</button>
+                                </div>''')
+        rendered_items = ''.join(elements)
+        return super().render(template=rendered_items, folder_id=id)

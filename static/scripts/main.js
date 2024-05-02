@@ -8,21 +8,27 @@ window.addEventListener('load', function() {
     addCardButton.addEventListener('click', createCardFromPrompt);
 
     const addLinkButton = document.querySelector('.add_link_button');
-    addLinkButton.addEventListener('click', function (e) {
-        askUser(['Link Text', 'URL'], ['name', 'link']).then(function (answers) {
-            const newLink = createLink(answers.name, answers.link);
-            addLinkToPage(newLink);
-        });
-    });
+    addLinkButton.addEventListener('click', createLinkFromPrompt);
 
     this.document.querySelector('.group_card').addEventListener('click', function(e) {
         if(e.target.classList.contains('delete_card_btn')) {
-            e.target.remove();
+            const card = e.target.closest('.card');
+            card.remove();
+            removeItem(card);
             return;
         }
 
         let card = e.target.closest('.card');
         if(!card || card.classList.contains('add_card')) {
+            return;
+        }
+
+        if(card.classList.contains('link')) {
+            let url = card.dataset.link;
+            if (!url.startsWith('http')) {
+                url = 'https://' + url;
+            }
+            window.open(url);
             return;
         }
         
@@ -32,7 +38,6 @@ window.addEventListener('load', function() {
 
     const backButton = document.querySelector('.back_button');
     backButton.addEventListener('click', showGroups);
-    getGroupContent();
 });
 
 function createCardFromPrompt() {
@@ -42,13 +47,30 @@ function createCardFromPrompt() {
             return;
         }
 
-        tryAddCard(answers.name)
+        addItem({
+            name: answers.name
+        });
     });
 }
 
-function tryAddCard(name) {
-    const card_id = document.querySelector('.group_card').dataset.currentFolder ?? null;
+function createLinkFromPrompt() {
+    askUser(['Link Text', 'URL'], ['name', 'link']).then(function (answers) {
+        if(answers.name === null || answers.link === null) {
+            return;
+        }
+
+        addItem({
+            name: answers.name,
+            link: answers.link
+        });
+    });
+}
+
+function addItem(itemData) {
+    const card_id = document.querySelector('.group_card').dataset.currentFolder;
     const cardCount = document.querySelector('.group_card').children.length - 1;
+    itemData.order = cardCount;
+
     fetch('/add', {
         method: 'POST',
         headers: {
@@ -57,31 +79,53 @@ function tryAddCard(name) {
         },
         body: JSON.stringify({
             parent: card_id,
-            content: {
-                name: name,
-                order: cardCount
-            }
+            content: itemData
         })
     })
     .then(response => {
         if(!response.ok) {
-            throw new Error(`Ошибка, код ответа: ${response.statusCode}`);
+            throw new Error(`Ошибка, код ответа: ${response.status}`);
         }
 
         return response.json();
     })
     .then(() => {
         location.replace(location.href);
-    })
-    //.catch(() => alert('Не удалось добавить ссылку'));
+    });
 }
 
-function  showGroups() {
-    const links = document.getElementsByClassName('links')[0];
-    links.style.display = 'none';
+function removeItem(card) {
+    const card_id = document.querySelector('.group_card').dataset.currentFolder;
+    const isLink = card.classList.contains('link');
+    const request = {
+        parent: card_id,
+        is_link: isLink
+    }
 
-    const groups = document.getElementsByClassName('groups')[0];
-    groups.style.display = 'block';
+    if(isLink) {
+        request.name = card.dataset.name;
+    } else {
+        request.id = card.id;
+    }
+
+    fetch('/delete', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(request)
+    })
+    .then(response => {
+        if(!response.ok) {
+            throw new Error(`Ошибка, код ответа: ${response.status}`);
+        }
+
+        return response.json();
+    })
+    .then(() => {
+        location.replace(location.href);
+    });
 }
 
 function askUser(fieldNames, keys) {

@@ -27,3 +27,13 @@ GROUP_SCHEMA = {
         "order": int
     }
 }
+
+LINK_DEL_SCHEMA = {
+    "parent": str,
+    "name": str
+}
+
+GROUP_DEL_SCHEMA = {
+    "parent": str,
+    "id": str
+}
