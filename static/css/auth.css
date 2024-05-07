@@ -126,3 +126,12 @@ input::placeholder {
 .auth_button#login_btn {
     width: 100px;
 }
+
+
+.form:target {
+    display: inline-block;
+}
+
+.form:not(:target) {
+    display: none;
+}
