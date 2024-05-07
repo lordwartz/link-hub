@@ -5,6 +5,7 @@
     <title>Link<Hub></title>
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/group.css">
+    <script src="../scripts/group.js"></script>
 </head>
 <body>
 <aside>
@@ -53,22 +54,24 @@
                 </div>
             </div>
             <div class="group_main">
-                <template id="inner_group">
+                <template id="inner_group_template">
                     <div class="inner_group">
+                        <div>
+                            <img src="../img/pink_group.png" height="50" alt="group_icon"/>
+                            <span></span>
+                        </div>
+                        <button class="delete_button">x</button>
                     </div>
                 </template>
-                <template id="inner_link">
+                <template id="inner_link_template">
                     <div class="inner_link">
+                        <div>
+                            <img src="../img/pink_link.png" height="50" alt="link_icon"/>
+                            <span></span>
+                        </div>
+                        <button class="delete_button"></button>
                     </div>
                 </template>
-                <div class="inner_group">
-                    <img src="../img/pink_group.png" height="50" alt="group_icon"/>
-                    Я какая-то группа
-                </div>
-                <div class="inner_link">
-                    <img src="../img/pink_link.png" height="50" alt="link_icon"/>
-                    Я какая-то ссылка
-                </div>
             </div>
             <script>
                 let quick_group_template = document.querySelector('#quick_menu_group_template');

@@ -2,7 +2,7 @@
     background-image: url("../img/backgroung.jpg");
     background-size: cover;
     height: 100%;
-    padding: 2% 2%;
+    padding: 10px 10px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -78,14 +78,43 @@
 .inner_group, .inner_link{
     box-sizing: border-box;
     padding: 5px 15px;
-    display: grid;
-    grid-template-columns: 50px auto;
+    display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     background-color: white;
     width: 100%;
-    gap: 15px;
     border-radius: 2px;
     cursor: pointer;
+}
+
+.inner_group span, .inner_link span {
+    display: flex;
+    width: 100%;
+    justify-content: start;
+    align-items: center;
+}
+
+.inner_link div, .inner_group div {
+    display: grid;
+    grid-template-columns: 50px  auto;
+    width: 100%;
+    gap: 15px;
+}
+
+.group_window .delete_button {
+    background-image: url("../img/cross.png");
+background-color: transparent;
+    background-size: cover;
+    display: none;
+    border: none;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+
+}
+
+.inner_group:hover .delete_button,
+.inner_link:hover .delete_button {
+    display: block;
 }
