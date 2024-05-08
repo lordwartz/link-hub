@@ -117,3 +117,7 @@
 .modal_message_name {
     color: black;
 }
+
+.modal_error {
+    line-height: 1.5;
+}
