@@ -100,3 +100,20 @@
 .modal_buttons .submit_btn:hover {
     background-color: #C6C6C6;
 }
+
+.modal p {
+    font-family: Bahnschrift, serif;
+    display: inline-block;
+    text-align: center;
+}
+
+.modal_message {
+    display: inline;
+    font-family: Bahnschrift, serif;
+    max-width: 400px;
+    word-wrap: normal;
+}
+
+.modal_message_name {
+    color: black;
+}
