@@ -1,4 +1,4 @@
-.content_window div {
+.main_content_window div {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -16,7 +16,7 @@
     font-size: 26px;
 }
 
-#error_body .content_window {
+#error_body .main_content_window {
     display: flex;
     flex-direction: column;
     justify-content: center;

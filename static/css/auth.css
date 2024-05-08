@@ -29,7 +29,7 @@ body {
     scale: 60%;
 }
 
-.content_window {
+.main_content_window {
     display: flex;
     box-sizing: border-box;
     flex-direction: column;

@@ -70,7 +70,7 @@
     padding: 0 20px;
 }
 
-.modal_buttons button {
+.modal_buttons button, .button {
     width: 150px;
     height: 30px;
     box-sizing: border-box;
@@ -83,21 +83,21 @@
     font-family: Bahnschrift, serif;
 }
 
-.modal_buttons .cancel_btn {
+.cancel_btn {
     background-color: #E6E6E6;
     color: #7B20B5;
 }
 
-.modal_buttons .cancel_btn:hover {
+.cancel_btn:hover {
     background-color: #C6C6C6;
 }
 
-.modal_buttons .submit_btn {
+.submit_btn {
     color: #CA51B4;
     background-color: white;
 }
 
-.modal_buttons .submit_btn:hover {
+.submit_btn:hover {
     background-color: #C6C6C6;
 }
 
