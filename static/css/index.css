@@ -120,55 +120,11 @@ main .top_menu {
     display: flex;
     box-sizing: border-box;
     flex-direction: row;
+    justify-content: flex-end;
     padding: 5px 20px;
     background: linear-gradient(88.65deg, #CA51B4 -6.56%, #5D168A 102.58%);
     box-shadow: 0 19px 23px rgba(202, 81, 180, 0.35);
     min-height: 75px;
-}
-
-main .top_menu .search {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    flex-direction: row;
-    align-items: center;
-    justify-content: start;
-    padding: 0;
-    margin-right: 10px;
-}
-
-main .top_menu .search img {
-    height: 30px;
-    width: 30px;
-}
-
-main .top_menu .search label {
-    display: flex;
-    box-sizing: border-box;
-    width: 80%;
-    height: 75%;
-    background-color: white;
-    padding: 5px 5px 5px 10px;
-    border-radius: 2px 0 0 2px;
-}
-
-main .top_menu .search label input{
-    border: none;
-    outline: none;
-    width: 100%;
-    font-size: 18px;
-    font-family: Bahnschrift, serif;
-}
-
-main .top_menu .search button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 75%;
-    border-radius: 0 2px 2px 0;
-    background-color: white;
-    border: none;
-    cursor: pointer;
 }
 
 main .top_menu .profile_name {
