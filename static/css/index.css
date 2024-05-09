@@ -120,10 +120,10 @@ main .top_menu {
     display: flex;
     box-sizing: border-box;
     flex-direction: row;
-    padding: 5px 20px 5px;
+    padding: 5px 20px;
     background: linear-gradient(88.65deg, #CA51B4 -6.56%, #5D168A 102.58%);
     box-shadow: 0 19px 23px rgba(202, 81, 180, 0.35);
-    height: 75px;
+    min-height: 75px;
 }
 
 main .top_menu .search {
