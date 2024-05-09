@@ -1,4 +1,4 @@
-.group_window {
+.main_content_window {
     background-image: url("../img/backgroung.jpg");
     background-size: cover;
     height: 100%;
@@ -9,7 +9,7 @@
     align-items: start;
 }
 
-.group {
+.content {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -19,7 +19,7 @@
     border-radius: 3px;
 }
 
-.group_header {
+.content_header {
     display: flex;
     box-sizing: border-box;
     flex-direction: row;
@@ -33,7 +33,7 @@
     padding: 5px 15px;
 }
 
-.group_header .back {
+.content_header .back {
     background-image: url("../img/back_arrow.png");
     background-size: cover;
     height: 45px;
@@ -102,7 +102,7 @@
     gap: 15px;
 }
 
-.group_window .delete_button {
+.main_content_window .delete_button {
     background-image: url("../img/cross.png");
 background-color: transparent;
     background-size: cover;

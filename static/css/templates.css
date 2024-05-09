@@ -1,0 +1,122 @@
+.modal_background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal {
+    font-family: Bahnschrift, serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    height: fit-content;
+    padding: 50px 100px;
+    background: linear-gradient(88.65deg, #CA51B4 -6.56%, #5D168A 102.58%);
+    box-shadow: -17px 19px 23.1px rgba(23, 23, 23, 0.44);
+    border-radius: 8px;
+    color: white;
+}
+
+.input_fields {
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    gap: 30px;
+}
+
+.input_fields .modal_input_label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 5px;
+    text-align: start;
+    width: 100%;
+}
+
+.input_fields .modal_input {
+    width: 100%;
+    height: 30px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: white;
+    font-family: Bahnschrift, serif;
+}
+
+.line {
+    height: 1px;
+    background-color: white;
+    width: 100%;
+}
+
+.modal_buttons {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 0 20px;
+}
+
+.modal_buttons button, .button {
+    width: 150px;
+    height: 30px;
+    box-sizing: border-box;
+    filter: drop-shadow(-5px 6px 4px rgba(0, 0, 0, 0.25));
+    padding: 0 15px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-family: Bahnschrift, serif;
+}
+
+.cancel_btn {
+    background-color: #E6E6E6;
+    color: #7B20B5;
+}
+
+.cancel_btn:hover {
+    background-color: #C6C6C6;
+}
+
+.submit_btn {
+    color: #CA51B4;
+    background-color: white;
+}
+
+.submit_btn:hover {
+    background-color: #C6C6C6;
+}
+
+.modal p {
+    font-family: Bahnschrift, serif;
+    display: inline-block;
+    text-align: center;
+}
+
+.modal_message {
+    display: inline;
+    font-family: Bahnschrift, serif;
+    max-width: 400px;
+    word-wrap: normal;
+}
+
+.modal_message_name {
+    color: black;
+}
+
+.modal_error {
+    line-height: 1.5;
+}
