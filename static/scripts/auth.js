@@ -39,7 +39,20 @@ document.addEventListener('DOMContentLoaded', function() {
         document.cookie = `activeForm=authorization`;
     });
 
+    document.querySelector('.reg_form input[name=password]').addEventListener('change', onPasswordFieldChange);
+    document.querySelector('.reg_form input[name=password-confirm]').addEventListener('change', onPasswordFieldChange);
+
     if (activeForm !== 'registration') {
         logLink.click();
     }
 });
+
+function onPasswordFieldChange() {
+    const password = document.querySelector('.reg_form input[name=password]');
+    const confirm = document.querySelector('.reg_form input[name=password-confirm]');
+    if(password.value === confirm.value) {
+        confirm.setCustomValidity('');
+    } else {
+        confirm.setCustomValidity('Пароли не совпадают');
+    }
+}
