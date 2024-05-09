@@ -22,39 +22,39 @@
                 <div class="line inactive" id="login"></div>
             </div>
         </div>
-        <form class="reg_form">
+        <form action="/register" method="POST" class="reg_form">
             <div class="reg_form_fields">
                 <label>
                     Имя пользователя
-                    <input type="text" placeholder="login">
+                    <input type="text" name="login" placeholder="login">
                 </label>
                 <label>
                     Почта
-                    <input type="email" placeholder="example@email.com">
+                    <input type="email" name="email" placeholder="example@email.com">
                 </label>
                 <label>
                     Пароль
-                    <input type="password">
+                    <input type="password" name="password">
                 </label>
                 <label>
                     Повторите пароль
-                    <input type="password">
+                    <input type="password" name="password-confirm">
                 </label>
             </div>
             <button class="auth_button" id="reg_btn" type="submit">
                 Зарегистрироваться
             </button>
         </form>
-        <form class="login_form" style="display: none">
+        <form action="/login" method="POST" class="login_form" style="display: none">
             <div class="reg_form_fields">
                 <label>
                     Имя пользователя
-                    <input type="text" placeholder="login">
+                    <input type="text" name="login" placeholder="login">
                     <div class="input_line"></div>
                 </label>
                 <label>
                     Пароль
-                    <input type="password">
+                    <input type="password" name="password">
                     <div class="input_line"></div>
                 </label>
             </div>
