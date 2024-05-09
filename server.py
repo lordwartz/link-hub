@@ -1,6 +1,5 @@
 from flask import Flask, jsonify, session, abort, send_from_directory
 from PyMongoJsonProvider import PyMongoJSONProvider
-from PageRenderer import FolderPageRenderer
 from pymongo import ReturnDocument
 from pymongo import MongoClient
 from hashlib import sha256
@@ -15,7 +14,7 @@ app = Flask(__name__)
 app.secret_key = os.urandom(30).hex()
 app.json = PyMongoJSONProvider(app)
 renderers = {
-    "folder": FolderPageRenderer()
+
 }
 
 client = MongoClient('localhost', 27017)
@@ -57,17 +56,15 @@ def login():
 def register():
     form_data = request.form
     new_user = {
-        "_id": form_data["login"],
-        "name": form_data["name"],
-        "email": form_data["email"],
         "login": form_data["login"],
+        "email": form_data["email"],
         "password": get_hash(form_data["password"])
     }
 
     insert_id = users.update_one(
         {
             "$or": [
-                {"_id": new_user["_id"]},
+                {"login": new_user["login"]},
                 {"email": new_user["email"]}
             ]
         },

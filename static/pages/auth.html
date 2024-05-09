@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Вход|Link<Hub></title>
     <link rel="stylesheet" href="static/css/auth.css">
     <script src="static/scripts/auth.js"></script>
 </head>
@@ -26,24 +26,24 @@
             <div class="reg_form_fields">
                 <label>
                     Имя пользователя
-                    <input type="text" name="login" placeholder="login">
-                    <div class="input_line"></div>
+                    <input type="text" name="login" autocomplete="username" placeholder="login">
                 </label>
+                <div class="input_line"></div>
                 <label>
                     Почта
-                    <input type="email" name="email" placeholder="example@email.com">
-                    <div class="input_line"></div>
+                    <input type="email" name="email" autocomplete="email" placeholder="example@email.com">
                 </label>
+                <div class="input_line"></div>
                 <label>
                     Пароль
-                    <input type="password" name="password">
-                    <div class="input_line"></div>
+                    <input type="password" autocomplete="new-password" name="password">
                 </label>
+                <div class="input_line"></div>
                 <label>
                     Повторите пароль
-                    <input type="password" name="password-confirm">
-                    <div class="input_line"></div>
+                    <input type="password" autocomplete="new-password" name="password-confirm">
                 </label>
+                <div class="input_line"></div>
             </div>
             <button class="auth_button" id="reg_btn" type="submit">
                 Зарегистрироваться
@@ -53,14 +53,14 @@
             <div class="reg_form_fields">
                 <label>
                     Имя пользователя
-                    <input type="text" name="login" placeholder="login">
-                    <div class="input_line"></div>
+                    <input type="text" name="login" autocomplete="username" placeholder="login">
                 </label>
+                <div class="input_line"></div>
                 <label>
                     Пароль
-                    <input type="password" name="password">
-                    <div class="input_line"></div>
+                    <input type="password" autocomplete="current-password" name="password">
                 </label>
+                <div class="input_line"></div>
             </div>
             <button class="auth_button" type="submit">
                 Войти
