@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="../css/auth.css">
-    <script src="../scripts/auth.js"></script>
+    <link rel="stylesheet" href="static/css/auth.css">
+    <script src="static/scripts/auth.js"></script>
 </head>
 <body>
     <div class="logo_window">
-        <img id="logo" src="../img/logo.png" alt="logo"/>
+        <img id="logo" src="static/img/logo.png" alt="logo"/>
         ВАШ ПУТЬ К ОРГАНИЗОВАННОМУ МИРУ ССЫЛОК
     </div>
     <div class="content_window">
@@ -22,26 +22,26 @@
                 <div class="line inactive" id="login"></div>
             </div>
         </div>
-        <form class="reg_form">
+        <form action="/register" method="POST" class="reg_form">
             <div class="reg_form_fields">
                 <label>
                     Имя пользователя
-                    <input type="text" placeholder="login">
+                    <input type="text" name="login" placeholder="login">
                     <div class="input_line"></div>
                 </label>
                 <label>
                     Почта
-                    <input type="email" placeholder="example@email.com">
+                    <input type="email" name="email" placeholder="example@email.com">
                     <div class="input_line"></div>
                 </label>
                 <label>
                     Пароль
-                    <input type="password">
+                    <input type="password" name="password">
                     <div class="input_line"></div>
                 </label>
                 <label>
                     Повторите пароль
-                    <input type="password">
+                    <input type="password" name="password-confirm">
                     <div class="input_line"></div>
                 </label>
             </div>
@@ -49,16 +49,16 @@
                 Зарегистрироваться
             </button>
         </form>
-        <form class="login_form" style="display: none">
+        <form action="/login" method="POST" class="login_form" style="display: none">
             <div class="reg_form_fields">
                 <label>
                     Имя пользователя
-                    <input type="text" placeholder="login">
+                    <input type="text" name="login" placeholder="login">
                     <div class="input_line"></div>
                 </label>
                 <label>
                     Пароль
-                    <input type="password">
+                    <input type="password" name="password">
                     <div class="input_line"></div>
                 </label>
             </div>
