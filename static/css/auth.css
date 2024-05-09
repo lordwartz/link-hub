@@ -29,7 +29,7 @@ body {
     scale: 60%;
 }
 
-.main_content_window {
+.content_window {
     display: flex;
     box-sizing: border-box;
     flex-direction: column;
@@ -96,18 +96,16 @@ body {
 }
 
 input {
+    font-family: 'Bahnschrift', sans-serif;
     background-color: transparent;
     border: none;
     outline: none;
+    color: white;
+    border-bottom: solid 1px white;
 }
 
 input::placeholder {
     color: rgba(255, 255, 255, 0.7);
-}
-
-.input_line {
-    height: 1px;
-    background-color: white;
 }
 
 .auth_button {
@@ -134,4 +132,9 @@ input::placeholder {
 
 .form:not(:target) {
     display: none;
+}
+
+input:-webkit-autofill {
+    box-shadow: 0 0 0 40px rgba(255, 255, 255, 1) inset !important;
+    border-radius: 3px;
 }
