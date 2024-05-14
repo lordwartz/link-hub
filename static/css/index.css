@@ -171,7 +171,7 @@ main .top_menu .profile_name a img {
     margin: 0 10px;
 }
 
-.main_groups .main_group, .add_main_group_link{
+.main_groups .item, .add_main_group_link {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -187,10 +187,6 @@ main .top_menu .profile_name a img {
     flex: 0 calc(33% - 30px);
     max-width: 500px;
     min-width: 200px;
-}
-
-.main_groups .main_group {
-
 }
 
 .add_main_group_link {
