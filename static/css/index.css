@@ -49,7 +49,7 @@ aside .quick_menu .quick_menu_box {
     background: lightgray;
 }
 
-aside .quick_menu a {
+aside .quick_menu .item {
     display: flex;
     box-sizing: border-box;
     flex-direction: column;

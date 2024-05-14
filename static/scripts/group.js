@@ -12,23 +12,13 @@ document.addEventListener('DOMContentLoaded', function() {
         container.appendChild(clone);
     }
 
-    addGroupContentTemplate(groupTemplate, 'Я какая-то группа', '8179798y4kjehkdjhfiuy38');
-    addGroupContentTemplate(linkTemplate, 'Я какая-то ссылка', 'google.com');
     addContentTemplate(groupMain, groupTemplate, 'Я какая-то группа', '8179798y4kjehkdjhfiuy38');
     addContentTemplate(groupMain, linkTemplate, 'Я какая-то ссылка', 'google.com');
 
     let quick_group_template = document.querySelector('#quick_menu_group_template');
+    const quickMenu = document.querySelector('.quick_menu');
     for (let i = 1; i <= 7; i++) {
-        {
-            let clone = document.importNode(quick_group_template.content, true);
-            let link = clone.querySelector('a');
-            link.textContent = `Группа ${i}`;
-            link.href = `#group${i}`;
-            if (i === 3) {
-                link.classList.add('active_quick_menu_group');
-            }
-            document.querySelector('.quick_menu').appendChild(clone);
-        }
+        addContentTemplate(quickMenu, quick_group_template, `Группа ${i}`, `group${i}_hash`);
     }
 
     let quickLinks = document.querySelectorAll('.quick_menu a');
