@@ -3,14 +3,15 @@ document.addEventListener('DOMContentLoaded', function() {
     let linkTemplate = document.querySelector('#inner_link_template');
     let groupMain = document.querySelector('.group_main');
 
-    function addGroupContentTemplate(template, text) {
+    function addGroupContentTemplate(template, text, data_url) {
         let clone = document.importNode(template.content, true);
         clone.querySelector('span').textContent = text;
+        clone.querySelector('.item').setAttribute('data-url', data_url);
         groupMain.appendChild(clone);
     }
 
-    addGroupContentTemplate(groupTemplate, 'Я какая-то группа');
-    addGroupContentTemplate(linkTemplate, 'Я какая-то ссылка');
+    addGroupContentTemplate(groupTemplate, 'Я какая-то группа', '8179798y4kjehkdjhfiuy38');
+    addGroupContentTemplate(linkTemplate, 'Я какая-то ссылка', 'google.com');
 
     let quick_group_template = document.querySelector('#quick_menu_group_template');
     for (let i = 1; i <= 7; i++) {

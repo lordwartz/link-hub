@@ -76,7 +76,7 @@
     padding: 20px 20px;
 }
 
-.inner_group, .inner_link{
+.item{
     box-sizing: border-box;
     padding: 5px 5px 5px 15px;
     display: flex;
@@ -89,7 +89,7 @@
     cursor: pointer;
 }
 
-.inner_group span, .inner_link span {
+.group span, .link span {
     display: flex;
     width: 100%;
     justify-content: start;
@@ -114,8 +114,8 @@
     height: 15px;
 }
 
-.inner_group:hover .delete_button,
-.inner_link:hover .delete_button {
+.group:hover .delete_button,
+.link:hover .delete_button {
     display: block;
     height: 20px;
     width: 20px;

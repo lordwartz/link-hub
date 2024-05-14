@@ -1,0 +1,20 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const itemContainer = document.querySelector('.group_main');
+
+    itemContainer.addEventListener('click', function (event) {
+        const item = event.target.closest('.item');
+        if (!item) return;
+
+        if (item.classList.contains('link')) {
+            let url = item.dataset.url;
+            if (!url.startsWith('http')) {
+                url = 'https://' + url;
+            }
+            window.open(url, '_blank');
+        } else if (item.classList.contains('group')) {
+            let hash = item.dataset.url;
+            console.log('Redirect to ' + hash);
+            window.location.href = `/group/${hash}`;
+        }
+    });
+});

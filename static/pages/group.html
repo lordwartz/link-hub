@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/static/css/index.css">
     <link rel="stylesheet" href="/static/css/group.css">
     <script src="/static/scripts/group.js"></script>
+    <script src="/static/scripts/handle_items.js"></script>
 </head>
 <body>
 <aside>
@@ -24,7 +25,6 @@
     <div class="exit">
         <a class="exit_a">Выйти</a>
     </div>
-
 </aside>
 <main>
     <div class="top_menu">
@@ -46,8 +46,9 @@
                 </div>
             </div>
             <div class="group_main">
+
                 <template id="inner_group_template">
-                    <div class="inner_group">
+                    <div class="item group">
                         <div class="item_name">
                             <img src="/static/img/pink_group.png" height="50" alt="group_icon"/>
                             <span></span>
@@ -58,7 +59,7 @@
                     </div>
                 </template>
                 <template id="inner_link_template">
-                    <div class="inner_link">
+                    <div class="item link">
                         <div class="item_name">
                             <img src="/static/img/pink_link.png" height="50" alt="link_icon"/>
                             <span></span>
