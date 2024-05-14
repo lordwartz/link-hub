@@ -28,14 +28,6 @@
 </aside>
 <main>
     <div class="top_menu">
-        <div class="search">
-            <label>
-                <input type="text" name="search_data">
-            </label>
-            <button class="magnifier" type="submit">
-                <img src="../img/magnifier.png" alt="search"/>
-            </button>
-        </div>
         <div class="profile_name">
             <span>username</span>
             <a>
@@ -49,57 +41,34 @@
                 <a class="back">
                 </a>
                 <div class="add_buttons">
-                    <a class="add_inner_link"></a>
-                    <a class="add_inner_group"></a>
+                    <button class="add_inner_link"></button>
+                    <button class="add_inner_group"></button>
                 </div>
             </div>
             <div class="group_main">
                 <template id="inner_group_template">
                     <div class="inner_group">
-                        <div>
+                        <div class="item_name">
                             <img src="../img/pink_group.png" height="50" alt="group_icon"/>
                             <span></span>
                         </div>
-                        <button class="delete_button">x</button>
+                        <div class="del_button_container">
+                            <button class="delete_button"></button>
+                        </div>
                     </div>
                 </template>
                 <template id="inner_link_template">
                     <div class="inner_link">
-                        <div>
+                        <div class="item_name">
                             <img src="../img/pink_link.png" height="50" alt="link_icon"/>
                             <span></span>
                         </div>
-                        <button class="delete_button"></button>
+                        <div class="del_button_container">
+                            <button class="delete_button"></button>
+                        </div>
                     </div>
                 </template>
             </div>
-            <script>
-                let quick_group_template = document.querySelector('#quick_menu_group_template');
-                for (let i = 1; i <= 7; i++) {
-                    {
-                        let clone = document.importNode(quick_group_template.content, true);
-                        let link = clone.querySelector('a');
-                        link.textContent = `Группа ${i}`;
-                        link.href = `#group${i}`;
-                        if (i === 3) {
-                            link.classList.add('active_quick_menu_group');
-                        }
-                        document.querySelector('.quick_menu').appendChild(clone);
-                    }
-                }
-
-                let quickLinks = document.querySelectorAll('.quick_menu a');
-
-                quickLinks.forEach(link => {
-                    link.addEventListener('click', function(e) {
-                        e.preventDefault(); // Отменяем стандартное поведение ссылки
-                        quickLinks.forEach(link => {
-                            link.classList.remove('active_quick_menu_group'); // Удаляем класс у всех ссылок
-                        });
-                        this.classList.add('active_quick_menu_group'); // Добавляем класс только нажатой ссылке
-                    });
-                });
-            </script>
         </div>
     </div>
 </main>

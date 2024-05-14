@@ -26,7 +26,8 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 60px;
+    min-height: 60px;
+    max-height: 60px;
     background: white;
     border-radius: 2px;
     border: 1px solid lightgray;
@@ -36,8 +37,8 @@
 .content_header .back {
     background-image: url("../img/back_arrow.png");
     background-size: cover;
-    height: 45px;
-    width: 26px;
+    height: 35px;
+    width: 18px;
     cursor: pointer;
 }
 
@@ -49,7 +50,7 @@
     gap: 10px;
 }
 
-.add_buttons a {
+.add_buttons button {
     height: 45px;
     width: 45px;
     border-radius: 2px;
@@ -77,7 +78,7 @@
 
 .inner_group, .inner_link{
     box-sizing: border-box;
-    padding: 5px 15px;
+    padding: 5px 5px 5px 15px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -95,26 +96,36 @@
     align-items: center;
 }
 
-.inner_link div, .inner_group div {
+.item_name{
     display: grid;
     grid-template-columns: 50px  auto;
-    width: 100%;
+    width: calc(100% - 20px);
     gap: 15px;
 }
 
 .main_content_window .delete_button {
     background-image: url("../img/cross.png");
-background-color: transparent;
+    background-color: transparent;
     background-size: cover;
     display: none;
     border: none;
     cursor: pointer;
-    width: 30px;
-    height: 30px;
-
+    width: 15px;
+    height: 15px;
 }
 
 .inner_group:hover .delete_button,
 .inner_link:hover .delete_button {
     display: block;
+    height: 20px;
+    width: 20px;
+}
+
+.del_button_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-start;
+    width: 20px;
+    height: 100%;
 }
