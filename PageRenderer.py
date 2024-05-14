@@ -41,6 +41,6 @@ def get_renderer(page_struct):
 
 def get_renderer_from_file(path):
     page = None
-    with open(path, 'r') as f:
+    with open(path, 'r', encoding='utf-8') as f:
         page = get_renderer(f.read())
     return page

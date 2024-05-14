@@ -1,5 +1,6 @@
-from flask import Flask, jsonify, session, abort, send_from_directory
+from flask import Flask, jsonify, session, abort, send_file
 from PyMongoJsonProvider import PyMongoJSONProvider
+from PageRenderer import get_renderer_from_file
 from pymongo import ReturnDocument
 from pymongo import MongoClient
 from hashlib import sha256
@@ -14,7 +15,7 @@ app = Flask(__name__)
 app.secret_key = os.urandom(30).hex()
 app.json = PyMongoJSONProvider(app)
 renderers = {
-
+    'index': get_renderer_from_file('static/pages/index.html')
 }
 
 client = MongoClient('localhost', 27017)
@@ -33,7 +34,7 @@ def is_logged_in():
 def auth():
     if request.method == 'GET':
         if 'logged_in' in session:
-            return renderers["folder"].render(get_folders(), id='root')
+            return renderers["index"](groups=get_folders(), id='root')
         return app.redirect('/auth')
 
 @app.route('/auth')
@@ -263,6 +264,10 @@ def delete_folder(id, parent_id):
             if link["is_link"]:
                 continue
             folders.append((link["_id"], str(cur_id)))
+
+@app.errorhandler(404)
+def not_found_page(e):
+    return app.send_static_file('pages/error_page.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
