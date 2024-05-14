@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <title>Link<Hub></title>
     <link rel="stylesheet" href="/static/css/index.css">
+    <link rel="stylesheet" href="/static/css/templates.css">
     <script src="/static/scripts/index.js"></script>
+    <script src="/static/scripts/modal_helper.js"></script>
     <script src="/static/scripts/handle_items.js"></script>
 </head>
 <body>
@@ -37,33 +39,16 @@
     </div>
     <div class="main_window">
         <div class="main_groups">
-            <!-- {{repeat|groups}}
-            <a class="main_group" href="/folder/{groups[_id]}">
-                {groups[name]}
-            </a>
-            {{end}}-->
-            <a class="add_main_group_link">+</a>
+            {{repeat|groups}}
+            <div class="item group" data-url="{groups[_id]}">
+                <span>{groups[name]}</span>
+            </div>
+            {{end}}
+            <div class="add_main_group_link">+</div>
             <script>
             </script>
         </div>
     </div>
-    <template id="add_group_modal">
-        <div class="modal_background">
-            <div class="modal">
-                <form class="input_fields">
-                    <label class="modal_input_label">
-                        <span>Имя</span>
-                        <input class="modal_input" name="name" type="text" placeholder="Введите имя группы">
-                        <div class="line"></div>
-                    </label>
-                    <div class="modal_buttons">
-                        <button class="cancel_btn">Отменить</button>
-                        <button class="submit_btn" type="submit">Создать группу</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </template>
 </main>
 </body>
 </html>
