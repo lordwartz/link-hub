@@ -5,7 +5,7 @@ body {
     height: 100vh;
     margin: 0;
     font-family: 'Bahnschrift', sans-serif;
-    background-image: url("../img/backgroung.jpg");
+    background-image: url("/static/img/backgroung.jpg");
     background-size: cover;
 }
 

@@ -1,5 +1,5 @@
 .main_content_window {
-    background-image: url("../img/backgroung.jpg");
+    background-image: url("/static/img/backgroung.jpg");
     background-size: cover;
     height: 100%;
     padding: 10px 10px;
@@ -35,7 +35,7 @@
 }
 
 .content_header .back {
-    background-image: url("../img/back_arrow.png");
+    background-image: url("/static/img/back_arrow.png");
     background-size: cover;
     height: 35px;
     width: 18px;
@@ -58,12 +58,12 @@
 }
 
 .add_buttons .add_inner_link {
-    background-image: url("../img/add_inner_link.png");
+    background-image: url("/static/img/add_inner_link.png");
     background-size: cover; /* Размер изображения */
 }
 
 .add_buttons .add_inner_group {
-    background-image: url("../img/add_inner_group.png");
+    background-image: url("/static/img/add_inner_group.png");
     background-size: cover;
 }
 
@@ -104,7 +104,7 @@
 }
 
 .main_content_window .delete_button {
-    background-image: url("../img/cross.png");
+    background-image: url("/static/img/cross.png");
     background-color: transparent;
     background-size: cover;
     display: none;

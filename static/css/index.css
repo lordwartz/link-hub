@@ -150,7 +150,7 @@ main .top_menu .profile_name a img {
 }
 
 .main_window {
-    background-image: url("../img/backgroung.jpg");
+    background-image: url("/static/img/backgroung.jpg");
     background-size: cover;
     height: 100%;
     padding: 5px 0;
