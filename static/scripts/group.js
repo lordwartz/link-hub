@@ -1,17 +1,21 @@
 document.addEventListener('DOMContentLoaded', function() {
+    addItemListenerToContainer('group_main');
+    addItemListenerToContainer('quick_menu');
     let groupTemplate = document.querySelector('#inner_group_template');
     let linkTemplate = document.querySelector('#inner_link_template');
     let groupMain = document.querySelector('.group_main');
 
-    function addGroupContentTemplate(template, text, data_url) {
+    function addContentTemplate(container, template, text, data_url) {
         let clone = document.importNode(template.content, true);
         clone.querySelector('span').textContent = text;
         clone.querySelector('.item').setAttribute('data-url', data_url);
-        groupMain.appendChild(clone);
+        container.appendChild(clone);
     }
 
     addGroupContentTemplate(groupTemplate, 'Я какая-то группа', '8179798y4kjehkdjhfiuy38');
     addGroupContentTemplate(linkTemplate, 'Я какая-то ссылка', 'google.com');
+    addContentTemplate(groupMain, groupTemplate, 'Я какая-то группа', '8179798y4kjehkdjhfiuy38');
+    addContentTemplate(groupMain, linkTemplate, 'Я какая-то ссылка', 'google.com');
 
     let quick_group_template = document.querySelector('#quick_menu_group_template');
     for (let i = 1; i <= 7; i++) {

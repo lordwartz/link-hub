@@ -1,5 +1,6 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const itemContainer = document.querySelector('.group_main');
+function addItemListenerToContainer(container) {
+    const containerName = `.${container}`;
+    const itemContainer = document.querySelector(containerName);
 
     itemContainer.addEventListener('click', function (event) {
         const item = event.target.closest('.item');
@@ -17,4 +18,4 @@ document.addEventListener('DOMContentLoaded', function() {
             window.location.href = `/group/${hash}`;
         }
     });
-});
+}

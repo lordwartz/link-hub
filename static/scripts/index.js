@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
+    addItemListenerToContainer('main_groups')
+    addItemListenerToContainer('quick_menu');
     let quick_group_template = document.querySelector('#quick_menu_group_template');
     let main_group_template = document.querySelector('#main_group_template');
     let add_button_template = document.querySelector('#add_group');
