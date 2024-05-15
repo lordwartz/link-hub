@@ -15,14 +15,15 @@ app = Flask(__name__)
 app.secret_key = os.urandom(30).hex()
 app.json = PyMongoJSONProvider(app)
 renderers = {
-    'index': get_renderer_from_file('static/pages/index.html')
+    'index': get_renderer_from_file('static/pages/index.html'),
+    'group': get_renderer_from_file('static/pages/group.html')
 }
 
 client = MongoClient('localhost', 27017)
-# client.drop_database('linkhub')
+client.drop_database('linkhub')
 db = client.linkhub
 users = db.users
-groups = db.groups
+groups_collection = db.groups
 
 
 # region auth
@@ -34,12 +35,13 @@ def is_logged_in():
 def auth():
     if request.method == 'GET':
         if 'logged_in' in session:
-            folders = get_folders()
+            groups = get_folders()
             return renderers["index"](
                 id='root',
-                groups=folders,
-                quick_groups=folders,
-                username=session["user_id"])
+                quick_groups=groups,
+                groups=groups,
+                username=session["login"],
+                current_location='root')
         return app.redirect('/auth')
 
 
@@ -61,12 +63,14 @@ def settings_page():
 @app.route('/login', methods=['POST'])
 def login():
     form_data = request.form
-    user_id = check_credentials(form_data['login'], form_data['password'])
-    if user_id is not None:
-        session['logged_in'] = True
-        session['user_id'] = user_id
-        return app.redirect('/')
-    abort(401)
+    user_data = check_credentials(form_data['login'], form_data['password'])
+    if user_data is None:
+        abort(401)
+    user_login, user_id = user_data
+    session['logged_in'] = True
+    session['login'] = user_login
+    session['user_id'] = user_id
+    return app.redirect('/')
 
 
 @app.route('/register', methods=['POST'])
@@ -107,7 +111,7 @@ def check_credentials(login, password):
         return None
 
     if user_data["password"] == get_hash(password):
-        return user_data["login"]
+        return user_data["login"], user_data['_id']
     return None
 
 
@@ -121,16 +125,15 @@ def get_hash(data):
 def add():
     data = request.json
     if schemas.validate(data, schemas.LINK_SCHEMA):
-        link_data = data["content"]
-        folder_id = groups.find_one_and_update(
+        folder_id = groups_collection.find_one_and_update(
             {"_id": ObjectId(data["parent"]), "user": session["user_id"]},
             {
                 "$push": {
                     "links": {
                         "is_link": True,
-                        "name": link_data["name"],
-                        "link": link_data["link"],
-                        "order": link_data["order"]
+                        "name": data["name"],
+                        "link": data["link"],
+                        "order": data["order"]
                     }
                 }
             }
@@ -141,27 +144,25 @@ def add():
         return jsonify({"id": folder_id}), 200
     
     elif schemas.validate(data, schemas.GROUP_SCHEMA):
-        group_data = data["content"]
-
-        group_id = groups.insert_one({
+        group_id = groups_collection.insert_one({
             "user": session["user_id"],
             "parent": data["parent"],
-            "name": group_data["name"],
-            "order": group_data["order"],
+            "name": data["name"],
+            "order": data["order"],
             "is_link": False,
             "links": []
         }).inserted_id
 
         if data["parent"] != 'root':
-            groups.find_one_and_update(
+            groups_collection.find_one_and_update(
                 {"_id": ObjectId(data["parent"])},
                 {
                     "$push": {
                         "links": {
                             "_id": group_id,
                             "is_link": False,
-                            "name": group_data["name"],
-                            "order": group_data["order"]
+                            "name": data["name"],
+                            "order": data["order"]
                         }
                     }
                 }
@@ -170,31 +171,8 @@ def add():
         return jsonify({"_id": group_id}), 200
     return jsonify({"error": "Wrong request json structure!"}), 400
 
-
-@app.route('/get', methods=['POST'])
-def add_user():
-    user_request = request.json
-    if not schemas.validate(user_request, {"id": str}):
-        return jsonify({"error": "Wrong request json structure!"}), 400
-    items = None
-    if user_request["id"] == None:
-        items = get_folders()
-    else:
-        group = groups.find_one(
-        {
-            "$and":[
-                {"user": session["user_id"]},
-                {"_id": ObjectId(user_request["id"])}
-            ]
-        })
-        
-        items = group["links"]
-    if items is None:
-        return jsonify({"Error": "No group found with given id"}), 400
-    return jsonify({"items" : items})
-
 def get_folders():
-    folders = groups.find({
+    folders = groups_collection.find({
         "$and": [
             {"user": session["user_id"]},
             {"parent": 'root'}
@@ -207,12 +185,12 @@ def get_folders():
         "is_link": False,
     } for folder in folders]
 
-@app.route("/folder/<id>", methods=['GET'])
+@app.route("/group/<id>", methods=['GET'])
 def get_folder(id):
     if not is_logged_in():
         return app.redirect('/')
 
-    group = groups.find_one(
+    group = groups_collection.find_one(
     {
         "$and":[
             {"user": session["user_id"]},
@@ -224,13 +202,28 @@ def get_folder(id):
         abort(404)
         
     items = group["links"]
-    return renderers["folder"].render(items, id)
+    links = []
+    folders = []
+    for item in items:
+        if item["is_link"]:
+            links.append(item)
+        else:
+            folders.append(item)
+
+    return renderers["group"](
+        current_location=group["_id"],
+        username=session["login"],
+        group_name=group["name"],
+        quick_groups=get_folders(),
+        groups=folders,
+        links=links
+    )
 
 @app.route('/delete', methods=['POST'])
 def delete():
     data = request.json
     if schemas.validate(data, schemas.LINK_DEL_SCHEMA):
-        folder_id = groups.find_one_and_update(
+        folder_id = groups_collection.find_one_and_update(
             {"_id": ObjectId(data["parent"]), "user": session["user_id"]},
             {
                 "$pull": {
@@ -251,9 +244,8 @@ def delete():
     return jsonify({"Error": "Wrong request json structure!"}), 400
 
 def delete_folder(id, parent_id):
-
     if parent_id != 'root':
-            groups.find_one_and_update(
+            groups_collection.find_one_and_update(
                 {"_id": ObjectId(parent_id)},
                 {
                     "$pull": {
@@ -270,7 +262,7 @@ def delete_folder(id, parent_id):
 
     while folders:
         cur_id, cur_parent_id = folders.pop()
-        folder = groups.find_one_and_delete({
+        folder = groups_collection.find_one_and_delete({
                 "user": session["user_id"],
                 "parent": cur_parent_id,
                 "_id": cur_id,

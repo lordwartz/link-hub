@@ -12,20 +12,15 @@ def validate(struct, schema):
 
 LINK_SCHEMA = {
     "parent": str,
-    "content": {
-        "name": str,
-        "link": str,
-        "order": int
-    }
-
+    "name": str,
+    "link": str,
+    "order": int
 }
 
 GROUP_SCHEMA = {
     "parent": str,
-    "content": {
-        "name": str,
-        "order": int
-    }
+    "name": str,
+    "order": int
 }
 
 LINK_DEL_SCHEMA = {
