@@ -187,6 +187,28 @@ main .top_menu .profile_name a img {
     flex: 0 calc(33% - 30px);
     max-width: 500px;
     min-width: 200px;
+    cursor: pointer;
+    position: relative;
+}
+
+.main_groups .delete_button {
+    background-image: url("/static/img/cross.png");
+    background-color: transparent;
+    background-size: cover;
+    display: none;
+    border: none;
+    cursor: pointer;
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.group:hover .delete_button {
+    display: block;
+    height: 20px;
+    width: 20px;
 }
 
 .add_main_group_link {
