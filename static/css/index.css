@@ -151,12 +151,17 @@ main .top_menu .profile_name {
 
 main .top_menu .profile_name a {
     height: 50px;
+    cursor: pointer;
 }
 
 main .top_menu .profile_name a img {
     border-radius: 50%;
     height: 50px;
     width: 50px;
+}
+
+.profile_name a img:hover {
+    filter: brightness(80%);
 }
 
 .main_window {

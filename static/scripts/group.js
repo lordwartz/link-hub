@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     handleToHomepageClick()
     addItemListenerToContainer('.group_main');
     addItemListenerToContainer('.quick_menu');
+    addListenerToBackButton();
     let groupTemplate = document.querySelector('#inner_group_template');
     let linkTemplate = document.querySelector('#inner_link_template');
     let groupMain = document.querySelector('.group_main');
