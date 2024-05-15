@@ -35,7 +35,8 @@ def get_renderer(page_struct):
 
     def renderer(**parameters):
         replacements = {key : sub_renderer(parameters) for key, sub_renderer in sub_renderers.items()}
-        return parsed_page.format(**replacements)
+        format_args = {**parameters, **replacements}
+        return parsed_page.format(**format_args)
 
     return renderer
 

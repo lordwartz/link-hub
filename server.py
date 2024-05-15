@@ -35,7 +35,11 @@ def auth():
     if request.method == 'GET':
         if 'logged_in' in session:
             folders = get_folders()
-            return renderers["index"](groups=folders, id='root', quick_groups=folders)
+            return renderers["index"](
+                id='root',
+                groups=folders,
+                quick_groups=folders,
+                username=session["user_id"])
         return app.redirect('/auth')
 
 @app.route('/auth')
@@ -92,7 +96,7 @@ def check_credentials(login, password):
         return None
 
     if user_data["password"] == get_hash(password):
-        return user_data["_id"]
+        return user_data["login"]
     return None
 
 
