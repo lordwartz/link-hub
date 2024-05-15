@@ -26,30 +26,6 @@
     transition: filter 0.3s ease;
 }
 
-#settings_profile_icon:hover, #edit_icon:hover{
-    filter: brightness(50%);
-}
-
-.profile_icon_wrapper {
-    position: relative;
-    width: 200px;
-}
-
-#edit_icon {
-    position: absolute;
-    left: calc(50% - 40px);
-    top: calc(50% - 40px);
-    width: 80px;
-    height: 80px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    cursor: pointer;
-}
-
-#settings_profile_icon:hover + #edit_icon, #edit_icon:hover{
-    opacity: 1;
-}
-
 .edit_form_fields {
     display: flex;
     flex-direction: column;

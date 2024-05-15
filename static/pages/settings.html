@@ -19,19 +19,19 @@
         </div>
         <div class="quick_menu">
             <div class="quick_menu_box">Настройки</div>
-            <div class="item group" data-url="settings/edit">Редактировать профиль</div>
+            <div class="item group" data-url="settings/edit">Редактирование профиля</div>
             <div class="item group" data-url="settings/security">Безопасность</div>
         </div>
     </div>
     <div class="exit">
-        <a>Выйти</a>
+        <a href="/logout">Выйти</a>
     </div>
 </aside>
 <main>
     <div class="top_menu">
         <div class="profile_name">
             <span>username</span>
-            <a>
+            <a href="/settings">
                 <img src="/static/img/temp_avatar.png" alt="profile_icon"/>
             </a>
         </div>
@@ -41,12 +41,12 @@
             <div class="content_header">
                 <a class="back">
                 </a>
+                <span>Редактирование профиля</span>
             </div>
-            <div id="edit_profile" style="display: none">
+            <div id="edit_profile">
                 <div id="profile_info">
                     <div class="profile_icon_wrapper">
                         <img id="settings_profile_icon" src="/static/img/temp_avatar.png" alt="profile_icon">
-                        <img id="edit_icon" src="/static/img/Edit.png" alt="edit_icon">
                     </div>
                     <span class="username">username</span>
                 </div>
@@ -54,17 +54,17 @@
                     <div class="edit_form_fields">
                         <label>
                             Имя пользователя
-                            <input type="text" name="new_username" value="username">
+                            <input type="text" name="new_username" placeholder="username">
                         </label>
                         <label>
                             Электронная почта
-                            <input type="email" name="new_email" value="username@email.com">
+                            <input type="email" name="new_email" placeholder="username@email.com">
                         </label>
                     </div>
                     <button class="submit_btn button" type="submit">Сохранить</button>
                 </div>
             </div>
-            <div id="security_settings" >
+            <div id="security_settings" style="display: none">
                 <div class="edit_password_form">
                     <em>Изменить пароль</em>
                     <div class="edit_form_fields">

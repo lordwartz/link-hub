@@ -67,6 +67,7 @@ aside .quick_menu .item {
 
 .quick_menu .item {
     box-shadow: none;
+    cursor: pointer;
 }
 
 .quick_menu .item:last-child {
@@ -96,11 +97,15 @@ aside .exit a {
     cursor: pointer;
 }
 
-aside .exit {
+.exit {
     display: flex;
     background-color: lightgray;
     height: 50px;
     width: 100%;
+}
+
+.exit:hover {
+    filter: brightness(90%);
 }
 
 .logo_container {
@@ -151,12 +156,17 @@ main .top_menu .profile_name {
 
 main .top_menu .profile_name a {
     height: 50px;
+    cursor: pointer;
 }
 
 main .top_menu .profile_name a img {
     border-radius: 50%;
     height: 50px;
     width: 50px;
+}
+
+.profile_name a img:hover {
+    filter: brightness(80%);
 }
 
 .main_window {
@@ -210,7 +220,7 @@ main .top_menu .profile_name a img {
 }
 
 .main_groups .delete_button {
-    background-image: url("/static/img/cross.png");
+    background-image: url("/static/img/cross_white.png");
     background-color: transparent;
     background-size: cover;
     display: none;
