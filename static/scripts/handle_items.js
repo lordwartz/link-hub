@@ -3,16 +3,6 @@ function deleteItem(item) {
     console.log('Delete item:', item);
 }
 
-function addSettingsMenuListener(container) {
-    const itemContainer = document.querySelector(container);
-
-    itemContainer.addEventListener('click', function(event) {
-        const group = event.target.closest('.group');
-        changePathTo(group, '');
-    });
-}
-
-
 function changePathTo(item, prefix) {
     let hash = item.dataset.url;
     console.log('Redirect to ' + hash);

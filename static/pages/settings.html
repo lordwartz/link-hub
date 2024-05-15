@@ -42,11 +42,10 @@
                 <a class="back">
                 </a>
             </div>
-            <div id="edit_profile" style="display: none">
+            <div id="edit_profile">
                 <div id="profile_info">
                     <div class="profile_icon_wrapper">
                         <img id="settings_profile_icon" src="/static/img/temp_avatar.png" alt="profile_icon">
-                        <img id="edit_icon" src="/static/img/Edit.png" alt="edit_icon">
                     </div>
                     <span class="username">username</span>
                 </div>
@@ -54,17 +53,17 @@
                     <div class="edit_form_fields">
                         <label>
                             Имя пользователя
-                            <input type="text" name="new_username" value="username">
+                            <input type="text" name="new_username" placeholder="username">
                         </label>
                         <label>
                             Электронная почта
-                            <input type="email" name="new_email" value="username@email.com">
+                            <input type="email" name="new_email" placeholder="username@email.com">
                         </label>
                     </div>
                     <button class="submit_btn button" type="submit">Сохранить</button>
                 </div>
             </div>
-            <div id="security_settings" >
+            <div id="security_settings" style="display: none">
                 <div class="edit_password_form">
                     <em>Изменить пароль</em>
                     <div class="edit_form_fields">
