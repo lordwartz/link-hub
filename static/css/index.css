@@ -15,7 +15,7 @@ aside {
     align-items: center;
     height: 100vh;
     background: white;
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 5px 4px 4px rgba(0, 0, 0, 0.25);
     width: 250px;
     z-index: 2;
 }
@@ -47,6 +47,8 @@ aside .quick_menu .quick_menu_box {
     height: 50px;
     min-height: 50px;
     background: lightgray;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 2;
 }
 
 aside .quick_menu .item {
@@ -61,6 +63,14 @@ aside .quick_menu .item {
     min-height: 50px;
     background-color: white;
     text-decoration: none;
+}
+
+.quick_menu .item {
+    box-shadow: none;
+}
+
+.quick_menu .item:last-child {
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
 }
 
 a:link, a:hover, a:visited, a:active {
@@ -78,11 +88,10 @@ aside .exit a {
     flex-direction: row;
     justify-content: flex-start;
     padding: 0 15px;
-
     align-items: center;
     align-self: flex-end;
-    width: 200px;
-    height: 50px;
+    width: 100%;
+    height: 100%;
     border-radius: 0;
     cursor: pointer;
 }
@@ -108,6 +117,7 @@ aside .exit {
 aside img#logo {
     height: 125px;
     margin: 0;
+    cursor: pointer;
 }
 
 main {
@@ -124,7 +134,7 @@ main .top_menu {
     justify-content: flex-end;
     padding: 5px 20px;
     background: linear-gradient(88.65deg, #CA51B4 -6.56%, #5D168A 102.58%);
-    box-shadow: 0 10px 23.1px rgba(202, 81, 180, 0.8);
+    box-shadow: 0 7px 15px rgba(0, 0, 0, 0.4);
     min-height: 75px;
     z-index: 1;
 }
@@ -182,11 +192,37 @@ main .top_menu .profile_name a img {
     background-color: #CA51B4;
     border-radius: 2px;
     font-size: 22px;
-    filter: drop-shadow(-4px 6px 4px rgba(0, 0, 0, 0.25));
-    margin: 15px 15px; /* Добавить внешний отступ справа и слева для каждого элемента */
+    filter: drop-shadow(5px 7px 4px rgba(0, 0, 0, 0.3));
+    margin: 15px 15px;
     flex: 0 calc(33% - 30px);
     max-width: 500px;
     min-width: 200px;
+    cursor: pointer;
+    position: relative;
+}
+
+.item:hover, .add_main_group_link:hover {
+    filter: brightness(95%) drop-shadow(5px 7px 4px rgba(0, 0, 0, 0.3));
+}
+
+.main_groups .delete_button {
+    background-image: url("/static/img/cross.png");
+    background-color: transparent;
+    background-size: cover;
+    display: none;
+    border: none;
+    cursor: pointer;
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.group:hover .delete_button {
+    display: block;
+    height: 20px;
+    width: 20px;
 }
 
 .add_main_group_link {
@@ -195,8 +231,4 @@ main .top_menu .profile_name a img {
     font-size: 60px;
     cursor: pointer;
     width: calc(33vw - 30px);
-}
-
-.add_main_group_link:hover {
-    background-color: #E6E6E6;
 }

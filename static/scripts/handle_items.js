@@ -1,3 +1,8 @@
+function deleteItem(item) {
+    item.remove();
+    console.log('Delete item:', item);
+}
+
 function addItemListenerToContainer(container) {
     const containerName = `.${container}`;
     const itemContainer = document.querySelector(containerName);
@@ -6,7 +11,10 @@ function addItemListenerToContainer(container) {
         const item = event.target.closest('.item');
         if (!item) return;
 
-        if (item.classList.contains('link')) {
+
+        if (event.target.classList.contains('delete_button')) {
+            deleteItem(item);
+        } else if (item.classList.contains('link')) {
             let url = item.dataset.url;
             if (!url.startsWith('http')) {
                 url = 'https://' + url;

@@ -4,11 +4,12 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    z-index: 2;
 }
 
 .modal {
@@ -21,7 +22,7 @@
     height: fit-content;
     padding: 50px 100px;
     background: linear-gradient(88.65deg, #CA51B4 -6.56%, #5D168A 102.58%);
-    box-shadow: -17px 19px 23.1px rgba(23, 23, 23, 0.44);
+    box-shadow: 10px 12px 16px rgba(0, 0, 0, 0.4);
     border-radius: 8px;
     color: white;
 }
