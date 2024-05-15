@@ -17,6 +17,7 @@
     height: 100%;
     background-color: lightgray;
     border-radius: 3px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
 }
 
 .content_header {
@@ -32,6 +33,7 @@
     border-radius: 2px;
     border: 1px solid lightgray;
     padding: 5px 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .content_header .back {
@@ -55,6 +57,9 @@
     width: 45px;
     border-radius: 2px;
     cursor: pointer;
+    outline: none;
+    border: none;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 .add_buttons .add_inner_link {
@@ -87,6 +92,7 @@
     width: 100%;
     border-radius: 2px;
     cursor: pointer;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .group span, .link span {
