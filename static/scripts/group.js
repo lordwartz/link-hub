@@ -1,14 +1,7 @@
-function handleToHomepageClick() {
-    const logo = document.querySelector('#logo');
-    logo.addEventListener('click', () => {
-        window.location.href = '/';
-    })
-}
-
 document.addEventListener('DOMContentLoaded', function() {
     handleToHomepageClick()
-    addItemListenerToContainer('group_main');
-    addItemListenerToContainer('quick_menu');
+    addItemListenerToContainer('.group_main');
+    addItemListenerToContainer('.quick_menu');
     let groupTemplate = document.querySelector('#inner_group_template');
     let linkTemplate = document.querySelector('#inner_link_template');
     let groupMain = document.querySelector('.group_main');
