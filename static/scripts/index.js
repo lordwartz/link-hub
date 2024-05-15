@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    addItemListenerToContainer('main_groups')
+    addItemListenerToContainer('main_groups');
     addItemListenerToContainer('quick_menu');
     document.querySelector('.add_main_group_link').addEventListener('click', () => {
         const formResult = askForm([

@@ -117,6 +117,7 @@ aside .exit {
 aside img#logo {
     height: 125px;
     margin: 0;
+    cursor: pointer;
 }
 
 main {
