@@ -17,11 +17,11 @@
         </div>
         <div class="quick_menu">
             <div class="quick_menu_box">Быстрый доступ</div>
-            <template id="quick_menu_group_template">
-                <div class="item group">
-                    <span></span>
+            {{repeat|quick_groups}}
+                <div class="item group" data-url="{quick_groups[_id]}">
+                    <span>{quick_groups[name]}</span>
                 </div>
-            </template>
+            {{end}}
         </div>
     </div>
     <div class="exit">

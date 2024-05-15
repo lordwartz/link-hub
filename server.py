@@ -34,7 +34,8 @@ def is_logged_in():
 def auth():
     if request.method == 'GET':
         if 'logged_in' in session:
-            return renderers["index"](groups=get_folders(), id='root')
+            folders = get_folders()
+            return renderers["index"](groups=folders, id='root', quick_groups=folders)
         return app.redirect('/auth')
 
 @app.route('/auth')
