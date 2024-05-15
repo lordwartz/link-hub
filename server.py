@@ -19,7 +19,7 @@ renderers = {
 }
 
 client = MongoClient('localhost', 27017)
-client.drop_database('linkhub')
+# client.drop_database('linkhub')
 db = client.linkhub
 users = db.users
 groups = db.groups
@@ -42,9 +42,20 @@ def auth():
                 username=session["user_id"])
         return app.redirect('/auth')
 
+
 @app.route('/auth')
 def auth_page():
     return app.send_static_file('pages/auth.html')
+
+
+@app.route('/groups')
+def groups_page():
+    return app.send_static_file('pages/group.html')
+
+
+@app.route('/settings')
+def settings_page():
+    return app.send_static_file('pages/settings.html')
 
 
 @app.route('/login', methods=['POST'])
@@ -273,6 +284,7 @@ def delete_folder(id, parent_id):
 @app.errorhandler(404)
 def not_found_page(e):
     return app.send_static_file('pages/error_page.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)

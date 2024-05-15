@@ -205,6 +205,10 @@ main .top_menu .profile_name a img {
     filter: brightness(95%) drop-shadow(5px 7px 4px rgba(0, 0, 0, 0.3));
 }
 
+.quick_menu .item:hover {
+    filter: brightness(95%);
+}
+
 .main_groups .delete_button {
     background-image: url("/static/img/cross.png");
     background-color: transparent;

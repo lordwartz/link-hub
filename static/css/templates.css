@@ -70,7 +70,7 @@
     width: 150px;
     height: 30px;
     box-sizing: border-box;
-    filter: drop-shadow(-5px 6px 4px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.3));
     padding: 0 15px;
     border-radius: 10px;
     border: none;
@@ -93,7 +93,7 @@
 }
 
 .submit_btn:hover {
-    background-color: #C6C6C6;
+    filter: brightness(95%) drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.3));
 }
 
 .modal p {

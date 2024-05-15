@@ -62,12 +62,12 @@
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
 }
 
-.add_buttons .add_inner_link {
+.add_buttons .add_link_btn {
     background-image: url("/static/img/add_inner_link.png");
     background-size: cover; /* Размер изображения */
 }
 
-.add_buttons .add_inner_group {
+.add_buttons .add_group_btn {
     background-image: url("/static/img/add_inner_group.png");
     background-size: cover;
 }
