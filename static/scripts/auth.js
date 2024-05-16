@@ -45,6 +45,16 @@ document.addEventListener('DOMContentLoaded', function() {
     if (activeForm !== 'registration') {
         logLink.click();
     }
+
+    document.querySelector('.reg_form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        trySendForm(e.target, '/register', 'Вы успешно зарегистрировались!', 'Имя пользователя или почта уже заняты!');
+    });
+
+    document.querySelector('.login_form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        trySendForm(e.target, '/login', null, 'Некоррректные данные входа!');
+    });
 });
 
 function onPasswordFieldChange() {
@@ -55,4 +65,32 @@ function onPasswordFieldChange() {
     } else {
         confirm.setCustomValidity('Пароли не совпадают');
     }
+}
+
+function trySendForm(form, path, ok=null, error=null) {
+    let formData = new FormData(form);
+    const sendData = Object.fromEntries(formData);
+
+    fetch(path, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(sendData)
+    })
+        .then((response) => {
+            if(response.status === 200) {
+                if (ok === null) {
+                    location.reload();
+                    return;
+                }
+
+                ask(ok, 'Ok').then(() => {
+                    location.reload();
+                });
+            } else {
+                ask(error, 'Ok');
+            }
+        });
 }

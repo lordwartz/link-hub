@@ -48,31 +48,33 @@ def auth():
 
 @app.route('/auth')
 def auth_page():
+    if 'logged_in' in session:
+        return app.redirect('/')
     return app.send_static_file('pages/auth.html')
 
 @app.route('/settings')
 def settings_page():
     if 'logged_in' in session:
-        return renderers['settings'](username=session['login'])
+        return renderers['settings'](username=session['login'], email=session['email'])
     return app.redirect('/auth')
 
 
 @app.route('/login', methods=['POST'])
 def login():
-    form_data = request.form
+    form_data = request.json
     user_data = check_credentials(form_data['login'], form_data['password'])
     if user_data is None:
         abort(401)
-    user_login, user_id = user_data
     session['logged_in'] = True
-    session['login'] = user_login
-    session['user_id'] = user_id
+    session['login'] = user_data['login']
+    session['user_id'] = user_data['_id']
+    session['email'] = user_data['email']
     return app.redirect('/')
 
 
 @app.route('/register', methods=['POST'])
 def register():
-    form_data = request.form
+    form_data = request.json
     new_user = {
         "login": form_data["login"],
         "email": form_data["email"],
@@ -92,7 +94,7 @@ def register():
 
     if insert_id is None:
         return jsonify({"Error": "Account with this login or email already exists"}), 400
-    return app.redirect('/')
+    return jsonify({"Ok": "Account created successfully!"}), 200
 
 
 @app.route('/logout', methods=['GET'])
@@ -108,7 +110,7 @@ def check_credentials(login, password):
         return None
 
     if user_data["password"] == get_hash(password):
-        return user_data["login"], user_data['_id']
+        return user_data
     return None
 
 @app.route('/change_creds', methods=['POST'])
