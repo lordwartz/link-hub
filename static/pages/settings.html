@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/static/css/group.css">
     <link rel="stylesheet" href="/static/css/settings.css">
     <link rel="stylesheet" href="/static/css/templates.css">
+    <script src="/static/scripts/modal_helper.js"></script>
     <script src="/static/scripts/settings.js"></script>
     <script src="/static/scripts/handle_items.js"></script>
     <script src="/static/scripts/utils.js"></script>
@@ -30,7 +31,7 @@
 <main>
     <div class="top_menu">
         <div class="profile_name">
-            <span>username</span>
+            <span>{username}</span>
             <a href="/settings">
                 <img src="/static/img/temp_avatar.png" alt="profile_icon"/>
             </a>
@@ -50,22 +51,22 @@
                     </div>
                     <span class="username">username</span>
                 </div>
-                <div class="edit_form">
+                <form class="edit_form">
                     <div class="edit_form_fields">
                         <label>
                             Имя пользователя
-                            <input type="text" name="new_username" placeholder="username">
+                            <input type="text" name="login" placeholder="username">
                         </label>
                         <label>
                             Электронная почта
-                            <input type="email" name="new_email" placeholder="username@email.com">
+                            <input type="email" name="email" placeholder="username@email.com">
                         </label>
                     </div>
                     <button class="submit_btn button" type="submit">Сохранить</button>
-                </div>
+                </form>
             </div>
             <div id="security_settings" style="display: none">
-                <div class="edit_password_form">
+                <form class="edit_password_form">
                     <em>Изменить пароль</em>
                     <div class="edit_form_fields">
                         <label>
@@ -74,18 +75,18 @@
                         </label>
                         <label>
                             Новый пароль
-                            <input type="password" name="new_password">
+                            <input type="password" name="password">
                         </label>
                         <label>
                             Повторите новый пароль
-                            <input type="password" name="new_password">
+                            <input type="password" name="password-confirm">
                         </label>
                     </div>
                     <button class="submit_btn button" type="submit">Сохранить</button>
-                </div>
+                </form>
                 <div id="delete_account">
                     <em>Действия с аккаунтом</em>
-                    <button class="button important_button" type="button">Удалить аккаунт</button>
+                    <button class="button important_button delete_account_btn" type="button">Удалить аккаунт</button>
                 </div>
             </div>
         </div>

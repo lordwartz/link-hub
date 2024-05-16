@@ -16,7 +16,8 @@ app.secret_key = os.urandom(30).hex()
 app.json = PyMongoJSONProvider(app)
 renderers = {
     'index': get_renderer_from_file('static/pages/index.html'),
-    'group': get_renderer_from_file('static/pages/group.html')
+    'group': get_renderer_from_file('static/pages/group.html'),
+    'settings': get_renderer_from_file('static/pages/settings.html')
 }
 
 client = MongoClient('localhost', 27017)
@@ -49,15 +50,11 @@ def auth():
 def auth_page():
     return app.send_static_file('pages/auth.html')
 
-
-@app.route('/groups')
-def groups_page():
-    return app.send_static_file('pages/group.html')
-
-
 @app.route('/settings')
 def settings_page():
-    return app.send_static_file('pages/settings.html')
+    if 'logged_in' in session:
+        return renderers['settings'](username=session['login'])
+    return app.redirect('/auth')
 
 
 @app.route('/login', methods=['POST'])
@@ -114,6 +111,89 @@ def check_credentials(login, password):
         return user_data["login"], user_data['_id']
     return None
 
+@app.route('/change_creds', methods=['POST'])
+def change_credentials():
+    if not 'logged_in' in session:
+        abort(403)
+    
+    data = request.json
+    if not schemas.validate(data, {'email': str, 'login': str}):
+        abort(400)
+    same_cred_users = users.find(
+        {
+            "$or": [
+                {"login": data["login"]},
+                {"email": data["email"]}
+            ]
+        })
+    
+    same_cred_users = list(same_cred_users)
+    
+    if len(same_cred_users) > 1:
+        abort(400)
+    
+    if same_cred_users and str(same_cred_users[0]['_id']) != session['user_id']:
+        abort(400)
+
+    users.find_one_and_update({
+        '_id': ObjectId(session['user_id'])
+    },
+    {
+        '$set': {
+            'login': data['login'],
+            'email': data['email']
+        }
+    })
+
+    session['login'] = data['login']
+
+    return jsonify({'Ok': 'Creadentials have been successfully changed!'}), 200
+
+@app.route('/change_pass', methods=['POST'])
+def change_password():
+    if not 'logged_in' in session:
+        abort(403)
+    
+    data = request.json
+    if not schemas.validate(data, {
+            'old_password': str,
+            'password': str,
+            'password-confirm':str
+        }):
+        abort(400)
+
+    user = users.find_one({'_id': ObjectId(session['user_id'])})
+    old_pass = get_hash(data['old_password'])
+    new_pass = get_hash(data["password"])
+
+    if old_pass != user['password'] or user["password"] == new_pass:
+        abort(400)
+
+    users.find_one_and_update({
+        '_id': ObjectId(session['user_id'])
+    },
+    {
+        '$set': {
+            'password': new_pass
+        }
+    })
+
+    session.clear()
+
+    return jsonify({'Ok': 'Password has been successfully changed!'}), 200
+
+@app.route('/delete_account', methods=['POST'])
+def delete_account():
+    if not 'logged_in' in session:
+        abort(403)
+
+    data = request.json
+    if not schemas.validate(data, {'confirm':bool}) or not data['confirm']:
+        abort(400)
+
+    users.find_one_and_delete({'_id': ObjectId(session['user_id'])})
+    session.clear()
+    return jsonify({'Ok': 'Account was deleted successfully!'}), 200
 
 def get_hash(data):
     return sha256(data.encode('utf-8')).hexdigest()
@@ -123,6 +203,9 @@ def get_hash(data):
 
 @app.route('/add', methods=['POST'])
 def add():
+    if not 'logged_in' in session:
+        abort(403)
+    
     data = request.json
     if schemas.validate(data, schemas.LINK_SCHEMA):
         folder_id = groups_collection.find_one_and_update(
@@ -172,6 +255,9 @@ def add():
     return jsonify({"error": "Wrong request json structure!"}), 400
 
 def get_folders():
+    if not 'logged_in' in session:
+        abort(403)
+
     folders = groups_collection.find({
         "$and": [
             {"user": session["user_id"]},
@@ -221,6 +307,9 @@ def get_folder(id):
 
 @app.route('/delete', methods=['POST'])
 def delete():
+    if not 'logged_in' in session:
+        abort(403)
+
     data = request.json
     if schemas.validate(data, schemas.LINK_DEL_SCHEMA):
         folder_id = groups_collection.find_one_and_update(
@@ -279,4 +368,4 @@ def not_found_page(e):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
