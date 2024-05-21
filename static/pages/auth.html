@@ -2,16 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="../css/auth.css">
-    <script src="../scripts/auth.js"></script>
+    <title>Вход|Link<Hub></title>
+    <link rel="stylesheet" href="/static/css/auth.css">
+    <link rel="stylesheet" href="/static/css/templates.css">
+    <script src="/static/scripts/modal_helper.js"></script>
+    <script src="/static/scripts/auth.js"></script>
 </head>
 <body>
     <div class="logo_window">
-        <img id="logo" src="../img/logo.png" alt="logo"/>
+        <img id="logo" src="/static/img/logo.png" alt="logo"/>
         ВАШ ПУТЬ К ОРГАНИЗОВАННОМУ МИРУ ССЫЛОК
     </div>
-    <div class="form_window">
+    <div class="content_window">
         <div class="auth_selector">
             <div>
                 <a class="reg_link">РЕГИСТРАЦИЯ</a>
@@ -22,45 +24,45 @@
                 <div class="line inactive" id="login"></div>
             </div>
         </div>
-        <form class="reg_form">
+        <form action="/register" method="POST" class="reg_form">
             <div class="reg_form_fields">
                 <label>
                     Имя пользователя
-                    <input type="text" placeholder="login">
-                    <div class="input_line"></div>
+                    <input type="text" name="login" autocomplete="username" placeholder="login">
                 </label>
+                <div class="input_line"></div>
                 <label>
                     Почта
-                    <input type="email" placeholder="example@email.com">
-                    <div class="input_line"></div>
+                    <input type="email" name="email" autocomplete="email" placeholder="example@email.com">
                 </label>
+                <div class="input_line"></div>
                 <label>
                     Пароль
-                    <input type="password">
-                    <div class="input_line"></div>
+                    <input type="password" autocomplete="new-password" name="password">
                 </label>
+                <div class="input_line"></div>
                 <label>
                     Повторите пароль
-                    <input type="password">
-                    <div class="input_line"></div>
+                    <input type="password" autocomplete="new-password" name="password-confirm">
                 </label>
+                <div class="input_line"></div>
             </div>
             <button class="auth_button" id="reg_btn" type="submit">
                 Зарегистрироваться
             </button>
         </form>
-        <form class="login_form" style="display: none">
+        <form action="/login" method="POST" class="login_form" style="display: none">
             <div class="reg_form_fields">
                 <label>
                     Имя пользователя
-                    <input type="text" placeholder="login">
-                    <div class="input_line"></div>
+                    <input type="text" name="login" autocomplete="username" placeholder="login">
                 </label>
+                <div class="input_line"></div>
                 <label>
                     Пароль
-                    <input type="password">
-                    <div class="input_line"></div>
+                    <input type="password" autocomplete="current-password" name="password">
                 </label>
+                <div class="input_line"></div>
             </div>
             <button class="auth_button" type="submit">
                 Войти

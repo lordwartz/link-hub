@@ -1,30 +1,47 @@
-class PageRenderer:
+import re
 
-    def __init__(self, template_path) -> None:
-        with open(template_path, encoding='utf-8') as f:
-            self._template = f.read()
+_template_regex = re.compile(r"{{(?P<command>.+?)\|(?P<parameter>.+?)}}\s*(?P<content>.*?)\s*{{end}}", re.DOTALL)
 
-    def render(self, **kwargs) -> str:
-        '''Генерирует html-страницу на основе шаблона и переданных параметров'''
-        return self._template.format(**kwargs)
+def _repeat_renderer(pattern, parameter_name):
 
+    def formatter(parameters):
+        items = []
+        item_list = parameters[parameter_name]
+        for item in item_list:
+            joined_dict = {**parameters, **{parameter_name : item}}
+            items.append(pattern.format(**joined_dict))
+        return '\n'.join(items)
+    
+    return formatter
 
-class FolderPageRenderer(PageRenderer):
-    def __init__(self) -> None:
-        super().__init__('templates/folder_page.html')
+_renderers = {
+    'repeat': _repeat_renderer
+}
 
-    def render(self, items, id):
-        elements = []
-        for item in items:
-            if item["is_link"]:
-                elements.append(f'''<div data-link="{item["link"]}" data-name="{item["name"]}" class="card link">
-                                    <div class="card_label"> {item["name"]} (ССЫЛКА)</div>
-                                    <button class="delete_card_btn">✖</button>
-                                </div>''')
-            else:
-             elements.append(f'''<div id="{item["_id"]}" class="card">
-                                    <div class ="card_label"> {item["name"]} </div>
-                                    <button class="delete_card_btn">✖</button>
-                                </div>''')
-        rendered_items = ''.join(elements)
-        return super().render(template=rendered_items, folder_id=id)
+def get_renderer(page_struct):
+    sub_renderers = {}
+
+    def _parse_match(match):
+        command = match['command']
+        parameter_name = match['parameter']
+        content = match['content']
+
+        renderer_func = _renderers[command]  
+        sub_renderers[parameter_name] = renderer_func(content, parameter_name)
+
+        return f'{{{parameter_name}}}'
+
+    parsed_page = re.sub(_template_regex, _parse_match, page_struct)
+
+    def renderer(**parameters):
+        replacements = {key : sub_renderer(parameters) for key, sub_renderer in sub_renderers.items()}
+        format_args = {**parameters, **replacements}
+        return parsed_page.format(**format_args)
+
+    return renderer
+
+def get_renderer_from_file(path):
+    page = None
+    with open(path, 'r', encoding='utf-8') as f:
+        page = get_renderer(f.read())
+    return page

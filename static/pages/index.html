@@ -3,91 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <title>Link<Hub></title>
-    <link rel="stylesheet" href="../css/index.css">
-    <script src="../scripts/index.js"></script>
+    <link rel="stylesheet" href="/static/css/index.css">
+    <link rel="stylesheet" href="/static/css/templates.css">
+    <script src="/static/scripts/index.js"></script>
+    <script src="/static/scripts/modal_helper.js"></script>
+    <script src="/static/scripts/handle_items.js"></script>
 </head>
-<body>
+<body data-location="{current_location}">
 <aside>
     <div class="side_content">
         <div class="logo_container">
-            <img id="logo" src="../img/logo.png" alt="logo"/>
+            <img id="logo" src="/static/img/logo.png" alt="logo"/>
         </div>
         <div class="quick_menu">
             <div class="quick_menu_box">Быстрый доступ</div>
-            <template id="quick_menu_group_template">
-                <a class="quick_menu_link" href="#">
-                </a>
-            </template>
+            {{repeat|quick_groups}}
+                <div class="item group" data-url="{quick_groups[_id]}">
+                    <span>{quick_groups[name]}</span>
+                </div>
+            {{end}}
         </div>
     </div>
     <div class="exit">
-        <a>Выйти</a>
+        <a href="/logout">Выйти</a>
     </div>
 </aside>
 <main>
     <div class="top_menu">
-        <div class="search">
-            <label>
-                <input type="text" name="search_data">
-            </label>
-            <button class="magnifier" type="submit">
-                <img src="../img/magnifier.png" alt="search"/>
-            </button>
-        </div>
         <div class="profile_name">
-            <span>username</span>
-            <a>
-                <img src="../img/temp_avatar.png"  alt="profile_icon"/>
+            <span>{username}</span>
+            <a href="/settings">
+                <img src="/static/img/temp_avatar.png" alt="profile_icon"/>
             </a>
         </div>
     </div>
     <div class="main_window">
         <div class="main_groups">
-            <template id="main_group_template">
-                <a class="main_group">
-                </a>
-            </template>
-            <template id="add_group">
-                <a class="add_main_group_link">+</a>
-            </template>
+            {{repeat|groups}}
+            <div class="item group" data-url="{groups[_id]}">
+                <span>{groups[name]}</span>
+                <button class="delete_button"></button>
+            </div>
+            {{end}}
+            <div class="add_main_group_link add_group">+</div>
             <script>
-                let quick_group_template = document.querySelector('#quick_menu_group_template');
-                let main_group_template = document.querySelector('#main_group_template');
-                let add_button_template = document.querySelector('#add_group');
-                for (let i = 1; i <= 12; i++) {
-                    {
-                        let clone = document.importNode(main_group_template.content, true);
-                        let link = clone.querySelector('a');
-                        link.textContent = `Группа ${i}`;
-                        link.href = `#group${i}`;
-                        document.querySelector('.main_groups').appendChild(clone);
-                    }
-                    {
-                        let clone = document.importNode(quick_group_template.content, true);
-                        let link = clone.querySelector('a');
-                        link.textContent = `Группа ${i}`;
-                        link.href = `#group${i}`;
-                        if (i === 3) {
-                            link.classList.add('active_quick_menu_group');
-                        }
-                        document.querySelector('.quick_menu').appendChild(clone);
-                    }
-                }
-
-                let clone = document.importNode(add_button_template.content, true);
-                document.querySelector('.main_groups').appendChild(clone);
-
-                let quickLinks = document.querySelectorAll('.quick_menu a');
-
-                quickLinks.forEach(link => {
-                    link.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        quickLinks.forEach(link => {
-                            link.classList.remove('active_quick_menu_group');
-                        });
-                        this.classList.add('active_quick_menu_group');
-                    });
-                });
             </script>
         </div>
     </div>

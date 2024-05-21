@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Link<Hub></title>
+    <link rel="stylesheet" href="/static/css/index.css">
+    <link rel="stylesheet" href="/static/css/group.css">
+    <link rel="stylesheet" href="/static/css/settings.css">
+    <link rel="stylesheet" href="/static/css/templates.css">
+    <script src="/static/scripts/modal_helper.js"></script>
+    <script src="/static/scripts/settings.js"></script>
+    <script src="/static/scripts/handle_items.js"></script>
+    <script src="/static/scripts/utils.js"></script>
+</head>
+<body>
+<aside>
+    <div class="side_content">
+        <div class="logo_container">
+            <img id="logo" src="/static/img/logo.png" alt="logo"/>
+        </div>
+        <div class="quick_menu">
+            <div class="quick_menu_box">Настройки</div>
+            <div class="item group" data-url="settings/edit">Редактирование профиля</div>
+            <div class="item group" data-url="settings/security">Безопасность</div>
+        </div>
+    </div>
+    <div class="exit">
+        <a href="/logout">Выйти</a>
+    </div>
+</aside>
+<main>
+    <div class="top_menu">
+        <div class="profile_name">
+            <span>{username}</span>
+            <a href="/settings">
+                <img src="/static/img/temp_avatar.png" alt="profile_icon"/>
+            </a>
+        </div>
+    </div>
+    <div class="main_content_window">
+        <div class="content">
+            <div class="content_header">
+                <a class="back">
+                </a>
+                <span>Редактирование профиля</span>
+            </div>
+            <div id="edit_profile">
+                <div id="profile_info">
+                    <div class="profile_icon_wrapper">
+                        <img id="settings_profile_icon" src="/static/img/temp_avatar.png" alt="profile_icon">
+                    </div>
+                    <span class="username">{username}</span>
+                </div>
+                <form class="edit_form">
+                    <div class="edit_form_fields">
+                        <label>
+                            Имя пользователя
+                            <input type="text" name="login" placeholder="username" value="{username}">
+                        </label>
+                        <label>
+                            Электронная почта
+                            <input type="email" name="email" placeholder="username@email.com" value="{email}">
+                        </label>
+                    </div>
+                    <button class="submit_btn button" type="submit">Сохранить</button>
+                </form>
+            </div>
+            <div id="security_settings" style="display: none">
+                <form class="edit_password_form">
+                    <em>Изменить пароль</em>
+                    <div class="edit_form_fields">
+                        <label>
+                            Старый пароль
+                            <input type="password" name="old_password">
+                        </label>
+                        <label>
+                            Новый пароль
+                            <input type="password" name="password">
+                        </label>
+                        <label>
+                            Повторите новый пароль
+                            <input type="password" name="password-confirm">
+                        </label>
+                    </div>
+                    <button class="submit_btn button" type="submit">Сохранить</button>
+                </form>
+                <div id="delete_account">
+                    <em>Действия с аккаунтом</em>
+                    <button class="button important_button delete_account_btn" type="button">Удалить аккаунт</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,80 @@
+#edit_profile, #security_settings {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    box-sizing: border-box;
+    padding: 20px 40px;
+    width: 100%;
+    height: 100%;
+    gap: 30px;
+}
+
+#profile_info {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 30px;
+    font-size: 20px;
+    width: 100%;
+}
+
+#settings_profile_icon {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    transition: filter 0.3s ease;
+}
+
+.edit_form_fields {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.edit_form, .edit_password_form {
+    width: 400px;
+}
+
+.edit_form_fields label {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.edit_form_fields label input {
+    height: 30px;
+    border: none;
+    outline: none;
+    filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: 5px;
+    padding: 0 10px;
+}
+
+.edit_form button, .edit_password_form button {
+    margin-top: 30px;
+}
+
+.edit_password_form .edit_form_fields {
+    margin-top: 15px;
+}
+
+#delete_account {
+    display: flex;
+    flex-direction: column;
+
+}
+
+#delete_account em {
+    margin-bottom: 15px;
+}
+
+.important_button {
+    background-color: #CA51B4;
+    color: white;
+    height: 40px;
+}
+
+.important_button:hover {
+    background-color: #AB4598;
+}
