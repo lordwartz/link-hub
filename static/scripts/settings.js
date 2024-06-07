@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     handleToHomepageClick();
     addListenerToBackButton();
-    const itemContainer = document.querySelector('.quick_menu');
+    const itemContainer = document.querySelector('#settings_quick_menu');
     let editProfile = document.querySelector('#edit_profile');
     let securitySettings = document.querySelector('#security_settings');
     const contentHeader = document.querySelector('.content_header span');

@@ -21,7 +21,7 @@ renderers = {
 }
 
 client = MongoClient('localhost', 27017)
-client.drop_database('linkhub')
+# client.drop_database('linkhub')
 db = client.linkhub
 users = db.users
 groups_collection = db.groups

@@ -1,3 +1,9 @@
+#settings_aside {
+    position: relative;
+}
+#settings_quick_menu {
+    max-height: calc(100vh - 150px - 60px);
+}
 #edit_profile, #security_settings {
     display: flex;
     flex-direction: column;
@@ -77,4 +83,21 @@
 
 .important_button:hover {
     background-color: #AB4598;
+}
+
+.exit {
+    display: flex;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 0;
+    background-color: lightgray;
+    min-height: 50px;
+    width: 250px;
+    padding: 0 15px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.exit:hover {
+    filter: brightness(90%);
 }
