@@ -47,7 +47,7 @@ aside {
     z-index: 2;
 }
 
-.item {
+.quick_menu .item {
     display: flex;
     box-sizing: border-box;
     flex-direction: column;
@@ -59,9 +59,6 @@ aside {
     min-height: 50px;
     background-color: white;
     text-decoration: none;
-}
-
-.quick_menu .item {
     box-shadow: none;
     cursor: pointer;
 }
@@ -182,11 +179,11 @@ main {
     position: relative;
 }
 
-.item:hover, .add_main_group_link:hover {
+.main_groups .item:hover, .group_main .item:hover, .add_main_group_link:hover {
     filter: brightness(95%) drop-shadow(5px 7px 4px rgba(0, 0, 0, 0.3));
 }
 
-.quick_menu .item:hover {
+#settings_quick_menu .item:hover, .quick_menu .item:hover {
     filter: brightness(95%);
 }
 
