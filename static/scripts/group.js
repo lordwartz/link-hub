@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     addItemListenerToContainer('.content');
     addItemListenerToContainer('.quick_menu');
     addListenerToBackButton();
+    addItemListenerToSideNavBtn();
     let groupTemplate = document.querySelector('#inner_group_template');
     let linkTemplate = document.querySelector('#inner_link_template');
     let groupMain = document.querySelector('.group_main');

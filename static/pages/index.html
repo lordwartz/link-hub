@@ -11,8 +11,11 @@
 </head>
 <body data-location="{current_location}">
 <aside>
-    <div class="logo_container">
-        <img id="logo" src="/static/img/logo.png" alt="logo"/>
+    <div class="control_panel">
+        <div class="logo_container">
+            <img id="logo" src="/static/img/logo.png" alt="logo"/>
+        </div>
+        <div class="close_btn">×</div>
     </div>
     <div class="quick_menu_box">Быстрый доступ</div>
     <div class="quick_menu">
@@ -25,6 +28,7 @@
 </aside>
 <main>
     <div class="top_menu">
+        <span class="sidenav_btn">☰</span>
         <div class="profile_name">
             <span>{username}</span>
             <a href="/settings">

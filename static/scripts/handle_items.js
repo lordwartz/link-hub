@@ -126,3 +126,24 @@ function addItemListenerToContainer(container) {
         }
     });
 }
+
+function addItemListenerToSideNavBtn() {
+    const menu_bnt = document.querySelector('.sidenav_btn');
+    const aside = document.querySelector('aside');
+    menu_bnt.addEventListener('click', function () {
+        aside.style.display = 'flex';
+    });
+
+    const close_side_btn = document.querySelector('.close_btn');
+    close_side_btn.addEventListener('click', function () {
+       aside.style.display = 'none';
+    });
+}
+
+function handleLogoCloseSideMenu() {
+    const logo = document.querySelector('#logo');
+    const aside = document.querySelector('aside');
+    logo.addEventListener('click', () => {
+        aside.style.display = 'none';
+    });
+}

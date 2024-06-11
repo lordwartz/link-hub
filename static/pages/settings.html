@@ -14,13 +14,25 @@
 </head>
 <body>
 <aside id="settings_aside">
-    <div class="logo_container">
-        <img id="logo" src="/static/img/logo.png" alt="logo"/>
+    <div class="control_panel">
+        <div class="logo_container">
+            <img id="logo" src="/static/img/logo.png" alt="logo"/>
+        </div>
+        <div class="close_btn">×</div>
     </div>
-    <div id="settings_quick_menu" class="quick_menu">
-        <div class="quick_menu_box">Настройки</div>
-        <div class="item group" data-url="settings/edit">Редактирование профиля</div>
-        <div class="item group" data-url="settings/security">Безопасность</div>
+    <div>
+        <div id="settings_quick_menu" class="quick_menu">
+            <div class="quick_menu_box">Настройки</div>
+            <div class="item group" data-url="settings/edit">Редактирование профиля</div>
+            <div class="item group" data-url="settings/security">Безопасность</div>
+        </div>
+        <!--<div class="quick_menu">
+            {{repeat|quick_groups}}
+            <div class="item group" data-url="{quick_groups[_id]}">
+                <span>{quick_groups[name]}</span>
+            </div>
+            {{end}}
+        </div>-->
     </div>
     <a class="exit" href="/logout">
         Выйти

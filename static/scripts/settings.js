@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     handleToHomepageClick();
     addListenerToBackButton();
+    addItemListenerToSideNavBtn();
     const itemContainer = document.querySelector('#settings_quick_menu');
     let editProfile = document.querySelector('#edit_profile');
     let securitySettings = document.querySelector('#security_settings');
