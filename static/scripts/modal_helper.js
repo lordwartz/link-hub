@@ -24,7 +24,6 @@ function ask(message, ok, cancel=null) {
         if(cancel != null) {
             modal.querySelector('.cancel_btn').addEventListener('click', () => {
                 reject(false);
-                alert('cancel');
                 template.remove();
             });
         }
