@@ -39,7 +39,7 @@ function askForm(inputs, ok, cancel= null) {
     document.body.append(template);
 
     return new Promise((resolve, reject) => {
-        modal.querySelector('.submit_btn').focus({focusVisible:false});
+        modal.querySelector('.modal_input').focus();
 
         template.querySelector('form').addEventListener('submit', function (e) {
             e.preventDefault();
