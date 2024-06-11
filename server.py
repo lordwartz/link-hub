@@ -21,7 +21,7 @@ renderers = {
 }
 
 client = MongoClient('localhost', 27017)
-# client.drop_database('linkhub')
+client.drop_database('linkhub')
 db = client.linkhub
 users = db.users
 groups_collection = db.groups
@@ -55,7 +55,7 @@ def auth_page():
 @app.route('/settings')
 def settings_page():
     if 'logged_in' in session:
-        return renderers['settings'](username=session['login'], email=session['email'])
+        return renderers['settings'](username=session['login'], email=session['email'], quick_groups=get_folders())
     return app.redirect('/auth')
 
 
