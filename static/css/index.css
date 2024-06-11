@@ -173,8 +173,7 @@ main {
     filter: drop-shadow(5px 7px 4px rgba(0, 0, 0, 0.3));
     margin: 15px 15px;
     flex: 0 calc(33% - 30px);
-    max-width: 500px;
-    min-width: 200px;
+    min-width: 25%;
     cursor: pointer;
     position: relative;
 }
@@ -213,4 +212,45 @@ main {
     font-size: 60px;
     cursor: pointer;
     width: calc(33vw - 30px);
+}
+
+@media screen and (max-device-width: 700px) {
+    html {
+        max-width: 100%;
+        min-height: 100vh;
+        border: 1px solid black;
+    }
+
+    body {
+        flex-direction: column;
+        box-sizing: border-box;
+        position: relative;
+        max-width: 100%;
+        min-height: 100vh;
+        background-size: cover;
+    }
+
+    aside {
+        display: none;
+    }
+
+    .main_groups .item, .add_main_group_link{
+        height: 200px;
+        width: 100%;
+        max-width: none;
+        min-width: auto;
+        font-size: 16px;
+        flex: none;
+        margin: 10px 0;
+
+    }
+
+    .main_groups {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 20px;
+        grid-row-gap: 0;
+        justify-items: center;
+    }
 }
