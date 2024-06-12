@@ -21,6 +21,12 @@ function ask(message, ok, cancel=null) {
             return false;
         });
 
+        template.addEventListener('click', (e) => {
+            if(e.currentTarget === e.target) {
+                template.remove();
+            }
+        });
+
         if(cancel != null) {
             modal.querySelector('.cancel_btn').addEventListener('click', () => {
                 reject(false);
@@ -48,6 +54,12 @@ function askForm(inputs, ok, cancel= null) {
             const formData = new FormData(e.target);
             resolve(Object.fromEntries(formData));
             return false;
+        });
+
+        template.addEventListener('click', (e) => {
+            if(e.currentTarget === e.target) {
+                template.remove();
+            }
         });
 
         if(cancel === null) {
@@ -87,7 +99,7 @@ function getModalTemplate() {
     return wrapper;
 }
 
-function getButtons(ok, cancel= null) {
+function getButtons(ok, cancel = null) {
     const wrapper = createWithClass('div', 'modal_buttons');
 
     const okButton = createWithClass('button', 'submit_btn');
