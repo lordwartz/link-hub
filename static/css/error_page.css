@@ -22,3 +22,29 @@
     justify-content: center;
     align-items: center;
 }
+
+@media screen and (max-device-width: 700px) {
+    .logo_window {
+        top: 15svh;
+    }
+
+    .top_menu {
+        height: 40vh;
+    }
+
+    #error_body .content_window {
+        height: 100vh;
+        padding: 50vh 20px;
+        justify-content: start;
+        overflow-y: hidden;
+    }
+
+    .error_code {
+        font-size: 4em;
+    }
+
+    .error_message {
+        font-size: 1em;
+        text-align: center;
+    }
+}
