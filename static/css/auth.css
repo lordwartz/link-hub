@@ -6,6 +6,7 @@ body {
     width: 100vw;
     margin: 0;
     font-family: 'Bahnschrift', sans-serif;
+    font-size: 18px;
     background-image: url("/static/img/backgroung.jpg");
     background-size: cover;
 }
@@ -17,13 +18,13 @@ body {
     justify-content: center;
     text-align: center;
     width: 400px;
-    height: 500px;
+    height: 510px;
     padding: 0 40px;
     background: #E6E6E6;
     box-shadow: -26px 19px 23.1px rgba(202, 81, 180, 0.59);
-    border-radius: 12px;
+    border-radius: 20px;
     z-index: 1;
-    font-size: 18px;
+    font-size: 1.3em;
     gap: 20px;
 }
 
@@ -44,9 +45,11 @@ body {
     position: relative;
     padding: 40px 0 30px 40px;
     left: -40px;
-    border-radius: 8px;
+    border-radius: 20px;
     gap: 30px;
     background: linear-gradient(98.07deg, #CA51B4 29.97%, #5D168A 81.41%);
+    box-shadow: -26px 19px 23.1px rgba(0, 0, 0, 0.4);
+    font-size: 1.2em;
 }
 
 .inactive {
@@ -70,7 +73,7 @@ body {
 }
 
 .line {
-    height: 2px;
+    height: 3px;
     background-color: white;
     width: 100%;
 }
@@ -103,8 +106,10 @@ input {
     border: none;
     outline: none;
     color: white;
-    border-bottom: solid 1px white;
+    border-bottom: solid 2px white;
     height: 25px;
+    border-radius: 10px;
+    padding: 0 10px;
 }
 
 input::placeholder {
@@ -113,7 +118,7 @@ input::placeholder {
 
 .auth_button {
     padding: 10px 20px;
-    border-radius: 10px;
+    border-radius: 3px;
     font-family: 'Bahnschrift', sans-serif;
     cursor: pointer;
     font-size: 18px;
@@ -139,7 +144,7 @@ input::placeholder {
 
 input:-webkit-autofill {
     box-shadow: 0 0 0 40px rgba(255, 255, 255, 1) inset !important;
-    border-radius: 3px;
+    border-radius: 10px;
 }
 
 #logo {
@@ -164,10 +169,11 @@ input:-webkit-autofill {
         width: 90%;
         left: 0;
         padding: 7vh 10px;
-        box-shadow: -4px 0 5px rgba(0, 0, 0, 0.6);
+        box-shadow: -15px 15px 15px rgba(0, 0, 0, 0.4);
         border-radius: 0;
         font-size: 3em;
         overflow: scroll;
+
     }
 
     .top_window {
@@ -184,17 +190,17 @@ input:-webkit-autofill {
         overflow: visible;
         height: 30vh;
         align-items: center;
-        box-shadow: -5px 5px 5px rgba(149, 60, 133, 0.7);
-        font-size: 32px;
-        padding: 0 40px;
-        gap: 15%;
+        box-shadow: -15px 15px 15px rgba(202, 81, 180, 0.59);
+        font-size: 2.2em;
+        padding: 50px 40px;
+        gap: 5%;
         margin: 0 -300px;
     }
 
     .logo_window img {
         scale: none;
-        width: 18vh;
-        height: auto;
+        width: auto;
+        height: 60%;
     }
 
     .logo_window div {
@@ -214,17 +220,22 @@ input:-webkit-autofill {
 
     .auth_selector {
         font-size: 1em;
-        width: 100%;
+        width: 95%;
+    }
+
+    .line {
+        height: 6px;
     }
 
     .reg_form_fields label {
         margin-bottom: 50px;
+        gap: 20px;
     }
 
     .reg_form_fields label input{
         margin-bottom: 15px;
         border-bottom: solid 2px white;
-        border-radius: 10px;
+        border-radius: 25px;
         padding: 0 15px;
     }
 
@@ -236,5 +247,11 @@ input:-webkit-autofill {
     .auth_button {
         scale: 200%;
         margin-bottom: 1vh;
+        border: none;
+    }
+
+    input:-webkit-autofill {
+        box-shadow: 0 0 0 40px rgba(255, 255, 255, 1) inset !important;
+        border-radius: 20px;
     }
 }

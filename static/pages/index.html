@@ -10,15 +10,16 @@
     <script src="/static/scripts/handle_items.js"></script>
 </head>
 <body data-location="{current_location}">
+<div class="aside_background"></div>
 <aside>
     <div class="control_panel">
         <div class="logo_container">
             <img id="logo" src="/static/img/logo.png" alt="logo"/>
         </div>
-        <div class="close_btn">×</div>
+        <span class="close_sidenav_btn">☰</span>
     </div>
-    <div class="quick_menu_box">Быстрый доступ</div>
     <div class="quick_menu">
+        <div class="quick_menu_box">Быстрый доступ</div>
         {{repeat|quick_groups}}
             <div class="item group" data-url="{quick_groups[_id]}">
                 <span>{quick_groups[name]}</span>

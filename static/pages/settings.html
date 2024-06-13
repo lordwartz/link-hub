@@ -13,33 +13,35 @@
     <script src="/static/scripts/utils.js"></script>
 </head>
 <body>
+<div class="aside_background"></div>
 <aside id="settings_aside">
     <div class="control_panel">
         <div class="logo_container">
             <img id="logo" src="/static/img/logo.png" alt="logo"/>
         </div>
-        <div class="close_btn">×</div>
+        <span class="close_sidenav_btn">☰</span>
     </div>
-    <div>
-        <div id="settings_quick_menu" class="quick_menu">
+    <div id="combined_quick_menu">
+        <div id="settings_menu" class="quick_menu">
             <div class="quick_menu_box">Настройки</div>
             <div class="item group" data-url="settings/edit">Редактирование профиля</div>
             <div class="item group" data-url="settings/security">Безопасность</div>
+            <a id="mobile_exit" class="exit" href="/logout">Выйти</a>
         </div>
-        <!--<div class="quick_menu">
+        <div id="standard_menu" class="quick_menu">
+            <div class="quick_menu_box">Быстрый доступ</div>
             {{repeat|quick_groups}}
             <div class="item group" data-url="{quick_groups[_id]}">
                 <span>{quick_groups[name]}</span>
             </div>
             {{end}}
-        </div>-->
+        </div>
     </div>
-    <a class="exit" href="/logout">
-        Выйти
-    </a>
+    <a id="desktop_exit" class="exit" href="/logout">Выйти</a>
 </aside>
 <main>
     <div class="top_menu">
+        <span class="sidenav_btn">☰</span>
         <div class="profile_name">
             <span>{username}</span>
             <a href="/settings">
@@ -53,6 +55,7 @@
                 <a class="back">
                 </a>
                 <span>Редактирование профиля</span>
+                <div class="hidden_block"></div>
             </div>
             <div id="edit_profile">
                 <div id="profile_info">
@@ -72,7 +75,7 @@
                             <input type="email" name="email" placeholder="username@email.com" value="{email}">
                         </label>
                     </div>
-                    <button class="submit_btn button" type="submit">Сохранить</button>
+                    <button class="submit_btn my_button" type="submit">Сохранить</button>
                 </form>
             </div>
             <div id="security_settings" style="display: none">
@@ -92,11 +95,11 @@
                             <input type="password" name="password-confirm">
                         </label>
                     </div>
-                    <button class="submit_btn button" type="submit">Сохранить</button>
+                    <button class="submit_btn my_button" type="submit">Сохранить</button>
                 </form>
                 <div id="delete_account">
                     <em>Действия с аккаунтом</em>
-                    <button class="button important_button delete_account_btn" type="button">Удалить аккаунт</button>
+                    <button class="my_button important_button delete_account_btn" type="button">Удалить аккаунт</button>
                 </div>
             </div>
         </div>

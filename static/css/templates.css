@@ -25,6 +25,7 @@
     box-shadow: 10px 12px 16px rgba(0, 0, 0, 0.4);
     border-radius: 8px;
     color: white;
+    box-sizing: content-box;
 }
 
 .input_fields {
@@ -32,11 +33,11 @@
     box-sizing: border-box;
     flex-direction: column;
     align-items: center;
-    width: 400px;
+    width: fit-content;
     gap: 30px;
 }
 
-.input_fields .modal_input_label {
+.modal_input_label {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -46,7 +47,7 @@
     width: 100%;
 }
 
-.input_fields .modal_input {
+.modal_input {
     width: 100%;
     height: 25px;
     border: none;
@@ -54,7 +55,7 @@
     background-color: transparent;
     color: white;
     font-family: Bahnschrift, serif;
-    border-bottom: solid 1px white;
+    border-bottom: solid 2px white;
 }
 
 .modal_buttons {
@@ -66,16 +67,17 @@
     padding: 0 20px;
 }
 
-.modal_buttons button, .button {
-    width: 150px;
-    height: 30px;
+.my_button {
+    width: fit-content;
+    height: 40px;
     box-sizing: border-box;
     filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.3));
-    padding: 0 15px;
-    border-radius: 10px;
+    padding: 5px 15px;
+    border-radius: 8px;
     border: none;
     cursor: pointer;
     font-family: Bahnschrift, serif;
+    font-size: 1em;
 }
 
 .cancel_btn {
@@ -115,4 +117,50 @@
 
 .modal_error {
     line-height: 1.5;
+}
+
+@media screen and (max-device-width: 700px) {
+    .modal {
+        font-size: 2.6em;
+        padding: 120px 80px;
+        border-radius: 20px;
+    }
+
+    .modal_input_label {
+        gap: 15px;
+    }
+
+    .modal_input_label input {
+        border-radius: 10px;
+        padding: 0 15px;
+    }
+
+    .input_fields {
+        width: 700px;
+        gap: 50px;
+    }
+
+    .modal_input {
+        height: 1.5em;
+        font-size: 0.8em;
+    }
+
+    .modal_input::placeholder{
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .modal_buttons {
+        gap: 50px;
+    }
+
+    .my_button {
+        padding: 10px 45px;
+        font-size: 0.9em;
+        min-height: 120px;
+        border-radius: 25px;
+    }
+
+    .content .my_button {
+        font-size: 2.2em;
+    }
 }

@@ -1,9 +1,10 @@
-function ask(message, ok, cancel=null) {
+function ask(message, ok, cancel = null) {
     const template = getModalTemplate();
     const modal = template.querySelector('.input_fields');
 
-    const messageEl = document.createElement('p');
+    const messageEl = document.createElement('span');
     messageEl.innerText = message;
+    messageEl.style.textAlign = 'center';
 
     modal.append(messageEl);
     modal.append(getButtons(ok, cancel));
@@ -11,7 +12,7 @@ function ask(message, ok, cancel=null) {
     document.body.append(template);
 
     return new Promise((resolve, reject) => {
-        modal.querySelector('.submit_btn').focus({focusVisible:false});
+        modal.querySelector('.submit_btn').focus({focusVisible: false});
 
         template.querySelector('form').addEventListener('submit', function (e) {
             e.preventDefault();
@@ -22,12 +23,12 @@ function ask(message, ok, cancel=null) {
         });
 
         template.addEventListener('click', (e) => {
-            if(e.currentTarget === e.target) {
+            if (e.currentTarget === e.target) {
                 template.remove();
             }
         });
 
-        if(cancel != null) {
+        if (cancel != null) {
             modal.querySelector('.cancel_btn').addEventListener('click', () => {
                 reject(false);
                 template.remove();
@@ -36,7 +37,7 @@ function ask(message, ok, cancel=null) {
     });
 }
 
-function askForm(inputs, ok, cancel= null) {
+function askForm(inputs, ok, cancel = null) {
     const template = getModalTemplate();
     const modal = template.querySelector('.input_fields');
     inputs.forEach(inputData => modal.append(getInput(inputData)));
@@ -57,12 +58,12 @@ function askForm(inputs, ok, cancel= null) {
         });
 
         template.addEventListener('click', (e) => {
-            if(e.currentTarget === e.target) {
+            if (e.currentTarget === e.target) {
                 template.remove();
             }
         });
 
-        if(cancel === null) {
+        if (cancel === null) {
             return;
         }
 
@@ -102,17 +103,17 @@ function getModalTemplate() {
 function getButtons(ok, cancel = null) {
     const wrapper = createWithClass('div', 'modal_buttons');
 
-    const okButton = createWithClass('button', 'submit_btn');
+    const okButton = createWithClass('button', 'submit_btn my_button');
     okButton.type = 'submit';
 
     okButton.innerText = ok;
     wrapper.append(okButton);
 
-    if(cancel === null) {
+    if (cancel === null) {
         return wrapper;
     }
 
-    const cancelButton = createWithClass('button', 'cancel_btn');
+    const cancelButton = createWithClass('button', 'cancel_btn my_button');
     cancelButton.innerText = cancel;
     cancelButton.type = 'button';
     wrapper.prepend(cancelButton);
@@ -121,6 +122,9 @@ function getButtons(ok, cancel = null) {
 
 function createWithClass(tagName, className) {
     const el = document.createElement(tagName);
-    el.classList.add(className);
+    const classList = className.split(' ');
+    for (const itemClass of classList) {
+        el.classList.add(itemClass);
+    }
     return el;
 }

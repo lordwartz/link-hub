@@ -12,15 +12,16 @@
     <script src="/static/scripts/utils.js"></script>
 </head>
 <body data-location="{current_location}">
+<div class="aside_background"></div>
 <aside>
     <div class="control_panel">
         <div class="logo_container">
             <img id="logo" src="/static/img/logo.png" alt="logo"/>
         </div>
-        <div class="close_btn">×</div>
+        <span class="close_sidenav_btn">☰</span>
     </div>
-    <div class="quick_menu_box">Быстрый доступ</div>
     <div class="quick_menu">
+        <div class="quick_menu_box">Быстрый доступ</div>
         {{repeat|quick_groups}}
             <div class="item group" data-url="{quick_groups[_id]}">
                 <span>{quick_groups[name]}</span>
@@ -53,7 +54,7 @@
                 {{repeat|groups}}
                     <div class="item group" data-url="{groups[_id]}">
                         <div class="item_name">
-                            <img src="/static/img/pink_group.png" height="50" alt="group_icon"/>
+                            <img src="/static/img/pink_group.png" alt="group_icon"/>
                             <span>{groups[name]}</span>
                         </div>
                         <div class="del_button_container">
@@ -64,7 +65,7 @@
                 {{repeat|links}}
                     <div class="item link" data-url="{links[link]}">
                         <div class="item_name">
-                            <img src="/static/img/pink_link.png" height="50" alt="link_icon"/>
+                            <img src="/static/img/pink_link.png" alt="link_icon"/>
                             <span>{links[name]}</span>
                         </div>
                         <div class="del_button_container">

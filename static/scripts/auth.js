@@ -1,22 +1,14 @@
-function getCookie(name) {
-    let matches = document.cookie.match(new RegExp(
-        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-    ));
-    return matches ? decodeURIComponent(matches[1]) : undefined;
-}
+document.addEventListener('DOMContentLoaded', function () {
+    const logLink = document.querySelector('.auth_link');
+    const regLink = document.querySelector('.reg_link');
+    const loginForm = document.querySelector('.login_form');
+    const regForm = document.querySelector('.reg_form');
+    const regLine = document.querySelector('.line#reg');
+    const loginLine = document.querySelector('.line#login');
 
-document.addEventListener('DOMContentLoaded', function() {
-    let logLink = document.querySelector('.auth_link');
-    let regLink = document.querySelector('.reg_link');
-    let loginForm = document.querySelector('.login_form');
-    let regForm = document.querySelector('.reg_form');
-    let regLine = document.querySelector('.line#reg');
-    let loginLine = document.querySelector('.line#login');
+    const activeForm = getCookie('activeForm');
 
-    let activeForm = getCookie('activeForm');
-
-    regLink.addEventListener('click', function(e) {
-        e.preventDefault();
+    regLink.addEventListener('click', function () {
         loginForm.style.display = 'none';
         regForm.style.display = 'flex';
         logLink.classList.add('inactive');
@@ -27,8 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.cookie = `activeForm=registration`;
     });
 
-    logLink.addEventListener('click', function(e) {
-        e.preventDefault();
+    logLink.addEventListener('click', function () {
         regForm.style.display = 'none';
         loginForm.style.display = 'flex';
         regLink.classList.add('inactive');
@@ -60,14 +51,14 @@ document.addEventListener('DOMContentLoaded', function() {
 function onPasswordFieldChange() {
     const password = document.querySelector('.reg_form input[name=password]');
     const confirm = document.querySelector('.reg_form input[name=password-confirm]');
-    if(password.value === confirm.value) {
+    if (password.value === confirm.value) {
         confirm.setCustomValidity('');
     } else {
         confirm.setCustomValidity('Пароли не совпадают');
     }
 }
 
-function trySendForm(form, path, ok=null, error=null) {
+function trySendForm(form, path, ok = null, error = null) {
     let formData = new FormData(form);
     const sendData = Object.fromEntries(formData);
 
@@ -80,7 +71,7 @@ function trySendForm(form, path, ok=null, error=null) {
         body: JSON.stringify(sendData)
     })
         .then((response) => {
-            if(response.status === 200) {
+            if (response.status === 200) {
                 if (ok === null) {
                     location.reload();
                     return;
