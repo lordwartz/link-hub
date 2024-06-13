@@ -47,6 +47,7 @@
     -webkit-box-orient: vertical;
     text-overflow: ellipsis;
     max-height: 100%;
+    text-align: center;
 }
 
 .back {

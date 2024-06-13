@@ -1,3 +1,9 @@
+@font-face {
+    font-family: Bahnschrift;
+    src: url('/static/fonts/Bahnschrift.ttf');
+    font-display: swap;
+}
+
 body {
     display: flex;
     justify-content: center;
@@ -6,6 +12,7 @@ body {
     width: 100vw;
     margin: 0;
     font-family: 'Bahnschrift', sans-serif;
+    font-weight: 400;
     font-size: 18px;
     background-image: url("/static/img/backgroung.jpg");
     background-size: cover;
@@ -161,6 +168,8 @@ input:-webkit-autofill {
         max-width: 100%;
         min-height: 100%;
         background-size: cover;
+        font-family: 'Bahnschrift', sans-serif;
+        font-weight: 500;
     }
 
     .content_window {
